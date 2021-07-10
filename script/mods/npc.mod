@@ -243,7 +243,6 @@ killnpcinpath["main"]=function()
 		killnpcinpath_end_fail()
 	else
 		killnpcinpath.count=killnpcinpath.count+1
-		fightpreper()
 		eatdrink()
 		busytest(killnpcinpath.search)
 	end

@@ -4,15 +4,22 @@ fish["ok"]=nil
 fish["fail"]=nil
 fish.items={}
 fish.items["diao gan"]={max=1,min=1}
-fish.items["鱼饵"]={max=100,min=1}
+--fish.items["鱼饵"]={max=100,min=1}
 fish.drops={}
 fish.drops["si yu"]="si yu"
 fish.drops["lan yu"]="lan yu"
+fish.drops["qingyu"]="qingyu"
+fish.drops["caoyu"]="caoyu"
+fish.drops["ji yu"]="ji yu"
+fish.drops["liyu"]="liyu"
+
 fish.sells={}
-fish.sells["qingyu"]={name="qingyu",id="qingyu"}
-fish.sells["caoyu"]={name="caoyu",id="caoyu"}
-fish.sells["ji yu"]={name="ji yu",id="ji yu"}
-fish.sells["liyu"]={name="liyu",id="liyu"}
+--fish.sells["qingyu"]={name="qingyu",id="qingyu"}
+--fish.sells["caoyu"]={name="caoyu",id="caoyu"}
+--fish.sells["ji yu"]={name="ji yu",id="ji yu"}
+--fish.sells["liyu"]={name="liyu",id="liyu"}
+--fish.sells["jin liyu"]={name="jin liyu",id="jin liyu"}
+
 
 fish.expmax=0
 do_fish=function(fish_ok,fish_fail,expmax)
@@ -95,6 +102,12 @@ fish.arrive=function()
 end
 fish_ondraw=function(n,l,w)
 	run("draw diao gan")
+	run("sell jin liyu")
+	run("sell long xia")
+	run("sell qingyu")
+	run("sell caoyu")
+	run("sell ji yu")
+	run("sell liyu")
 end
 
 fish.loop=function()

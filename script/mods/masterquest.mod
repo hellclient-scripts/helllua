@@ -448,7 +448,6 @@ mqkill.main=function()
 		mqkill_end_fail()
 	else
 		mqkill["searchcount"]=mqkill["searchcount"]+1
-		fightpreper()
 		eatdrink()
 		busytest(mqkill.search)
 	end
@@ -614,13 +613,22 @@ letteraccept=function()
 	print(tdelay)
 	local potmax=getnum(tonumber(GetVariable("potmax")))
 	if masterquest.type~=masterquest.normal then
+	print('type')
 	elseif mqletter.arrive ==2 then
+	print('arrive')
 	elseif giftquest[mqcount] ==true then
+	print('giftquest')
 	elseif quest.stop==true then
+		print('stop')
+
 	elseif tdelay>-1 and tdelay<=acceptmaxstep then
+			print('delay',tdelay,acceptmaxstep)
 	elseif potmax>0 and me.hp.pot>potmax then
+	print('pot')
 	elseif needaskmasterweapon() then
+	print('askweapon')
 	elseif _skilllist==nil then
+	print('skilllist')
 	else
 		return true
 	end

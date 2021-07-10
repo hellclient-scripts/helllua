@@ -26,7 +26,8 @@ blocker["赵半山笑嘻嘻地"]={id="zhao banshan",exp=790000}
 blocker["周仲英"]={id="zhou zhongying",exp=790000}
 blocker["陆菲青"]={id="lu feiqing",exp=790000}
 blocker["无尘"]={id="wuchen daozhang",exp=1190000}
-
+blocker["无尘"]={id="wuchen daozhang",exp=1190000}
+blocker["张富贵"]={cmd="give 10 gold to zhang fugui"}
 
 
 block_onnpc=function(n,l,w)
@@ -34,6 +35,13 @@ block_onnpc=function(n,l,w)
 --	if not(hashook(hooks.steptimeout)) then return end
 	if not(hashook(hooks.step)) then return end
 	if blocker[w[2]]==nil then return end
+	if blocker[w[2]].cmd~=nil and blocker[w[2]].cmd~="" then
+		run(blocker[w[2]].cmd)
+		if not hashook(hooks.steptimeout) then
+			delay(1,walkagain)
+		end
+		return
+	end 
 	if blocker[w[2]].exp>getnum(me.hp.exp) or blocker[w[2]].exp==-1 then
 		if not hashook(hooks.steptimeout) then
 			delay(1,walkagain)

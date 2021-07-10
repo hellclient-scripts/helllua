@@ -69,7 +69,7 @@ mapper.getpath=function(r,t,f)
 	if p then 
 		for k, v in pairs(p) do
 			table.insert(result,v.command)
-			if v.delay then
+			if v.delay>0 then
 				delay=delay+v.delay
 			else
 				delay=delay+1
