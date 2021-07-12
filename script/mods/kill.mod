@@ -22,6 +22,7 @@ getpfm=function()
 	return pfm
 end
 pfm=function()
+	print("pfm")
 	run(getpfm())
 end
 getfightpreper=function()
