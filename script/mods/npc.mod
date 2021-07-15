@@ -130,7 +130,7 @@ npcinpath.testnpc=function()
 			if room_obj[v.name]~=nil then
 				if room_obj[v.name].id~=nil then
 					if string.find(room_obj[v.name].id,"%s")~=nil then
-						helpfindnpcfound(i,_roomid,masterquest.city)
+						helpfindnpcfound(i,_roomid,masterquest.city,room_obj[v.name].id)
 					end
 				end
 			end

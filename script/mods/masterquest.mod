@@ -42,7 +42,7 @@ initmq=function()
 	npc.id=nil
 	mqkill["searchcount"]=0
 	mqkill["city"]=""
-	mqkill["searchmax"]=1
+	mqkill["searchmax"]=3
 	initmqletter()
 	if masterquest.type~=masterquest.assister then
 		masterquest.firstsearch=true
@@ -195,6 +195,7 @@ masterquest.maincmd=function()
 end
 
 masterquest.asknpc=function()
+	partyhelp(masterquest.npc)
 	do_mqask(masterquest.maincmd,masterquest.askyou)
 end
 masterquest.askyou=function()
@@ -249,6 +250,7 @@ end
 
 mqinfo=function(n,l,w)
 	masterquest["npc"]=w[2]
+	partyhelp(w[2])
 	masterquest["city"]=UTF8Sub(w[4],0,2)
 	EnableTriggerGroup("mqinfo2",true)
 end
@@ -454,6 +456,7 @@ mqkill.main=function()
 end
 mqkill.search=function()
 		print(mqkill["city"])
+		partyhelp(masterquest.npc)
 		if masterquest.fleesearch==true then
 			masterquest.fleesearch=false
 			masterquest.firstsearch=false
@@ -471,6 +474,7 @@ mqkill.search=function()
 		do_npcinpath(city[mqkill["city"]].path,mqkill.npcfind,mqkill.main)
 end
 mqkill.search2=function()
+		print("search2")
 		do_searchnpc(mqkill.npcfind,mqkill.search2fail)
 end
 mqkill.search2fail=function()
@@ -669,6 +673,7 @@ mqletterquest=function(n,l,w)
 		initmq()
 		initmqletter()
 		masterquest.npc=w[3]
+		partyhelp(w[3])
 		masterquest.city=UTF8Sub(w[5],0,2)
 		masterquest.flee=mqletterflee
 		mqletterflee=false
@@ -756,15 +761,12 @@ end
 helpfindnpc={}
 
 partyhelp=function(name)
-	if helpfindid==nil then helpfindid="" end
-	if helpfindid~="" and helpfindpassword~="" then
-		name=encrypt(name,helpfindpassword)
-		run("party helllua-help-"..helpfindid.."-"..name)
-	else
-		run("party helllua-help--"..name)
-	end
+	Broadcast("help "..GetVariable("id").." "..name)
 end
-
+on_bc_partyhelp=function(id,name)
+	helpfindnpc[id]={}
+	helpfindnpc[id].name=name
+end
 on_partyhelp=function(n,l,w)
 	if w[4]~="" and w[4]~=helpfindid then
 		return
@@ -784,19 +786,40 @@ on_partyhelp=function(n,l,w)
 	end
 end
 
-helpfindnpcfound=function(finder,loc,city)
-	if loc<0 then return end
+helpfindnpcfound=function(finder,loc,city,npcid)
+	if loc-0<0 then return end
 	if helpfindnpc[finder]==nil then return end
 	loc=tostring(loc)
 	local id=""
-	if helpfindnpc[finder].encrypt==true then
-		helpfindnpc[finder].name=encrypt(helpfindnpc[finder].name,helpfindpassword)
-		loc=encrypt(loc,helpfindpassword)
-		city=encrypt(city,helpfindpassword)
-		id=helpfindid
-	end
-	run("party helllua.find-"..id.."-"..helpfindnpc[finder].name.."-"..loc.."-"..city)
+	--run("party helllua.find-"..id.."-"..helpfindnpc[finder].name.."-"..loc.."-"..city)
+	Broadcast("found "..GetVariable("id").." "..finder.." "..helpfindnpc[finder].name.." "..loc.." "..city.." "..npcid)
 	helpfindnpc[finder]=nil
+end
+on_bc_partyfind=function(id,finder,name,loc,cityname,npcid)
+	helpfindnpc[finder]=nil
+	if id==GetVariable("id") then
+		return
+	end
+	if name~=masterquest.npc then return end
+	if masterquest.assistwait==true then return end
+	if city[cityname]==nil then return end
+	local loc=tonumber(loc)
+	if loc==nil then return end
+	if loc<0 then return end
+	print("感谢队友",id,"提供线索 ",name,"@",loc,"|",cityname,"-")
+	WriteLog("感谢队友提供线索",id,"-",name)
+	masterquest.fleesearch=false
+	masterquest.firstsearch=false
+	masterquest.city=cityname
+	masterquest.far=false
+	masterquest.flee=false
+	masterquest.npcid=npcid
+	mqkill.city=cityname
+	mqkill["searchcount"]=1
+	if walking==nil then
+		return
+	end
+	go(loc,mqkill.npcfind,masterquest.main)
 end
 
 on_partyfind=function(n,l,w)

@@ -49,7 +49,7 @@ getfightpreper=function()
 			cmd=cmd..";unwield "..weapon2id..";remove"..weapon2id
 	end
 	if weapon1id~="" and weapon1id~=nil then
-		cmd=cmd..";wield "..weapon1id..";remove"..weapon1id
+		cmd=cmd..";wield "..weapon1id..";wear "..weapon1id
 	end
 	return cmd
 end

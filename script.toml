@@ -4,7 +4,8 @@ OnOpen = ""
 OnClose = ""
 OnConnect = ""
 OnDisconnect = "on_disconnect"
-
+OnBroadcast="on_broadcast"
+Channel="helllua"
 [[Triggers]]
   ID = "d1d3be7okrbkfu6eh7d37"
   Name = "status_onjifa"
