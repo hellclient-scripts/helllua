@@ -356,6 +356,11 @@ walk_wdfail=function(n,l,w)
 	settags()
 	callhook(hooks.flyfail)
 end
+walk_slfail=function(n,l,w)
+	familys[me.fam].family="sl2"
+	settags()
+	callhook(hooks.flyfail)
+end
 ----------------------------------
 
 
@@ -643,3 +648,18 @@ dogrecon=function()
 	recon()
 end
 
+
+-----
+try_walkpath=function(start,path)
+	local steps=SplitN(path,";",-1)
+	local loc=start
+	local result=""
+	for k,v in pairs(steps) do
+		result=result.."({loc="..loc..",step=\""..v.."\"}),"
+		loc=getexitroom(loc,v)
+	end
+	if #result>0 then
+		result=UTF8Sub(result,0,#result-1)
+	end
+	return "{"..result.."}"
+end

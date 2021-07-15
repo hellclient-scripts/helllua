@@ -530,6 +530,15 @@
    script="walk_wdfail"
    sequence="100"
   >
+    <trigger
+   enabled="y"
+   group="system"
+   match="^(&gt; )* 你掂量了一下，觉得自己一苇渡江的绝技还没有炼到家。"
+   name="walk_slfail"
+   regexp="y"
+   script="walk_slfail"
+   sequence="100"
+  >
   </trigger>
   <trigger
    enabled="y"

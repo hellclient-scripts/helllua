@@ -26,7 +26,9 @@ blocker["赵半山笑嘻嘻地"]={id="zhao banshan",exp=790000}
 blocker["周仲英"]={id="zhou zhongying",exp=790000}
 blocker["陆菲青"]={id="lu feiqing",exp=790000}
 blocker["无尘"]={id="wuchen daozhang",exp=1190000}
-blocker["无尘"]={id="wuchen daozhang",exp=1190000}
+blocker["拓跋"]={id="tuoba",exp=300000}
+
+
 blocker["张富贵"]={cmd="give 10 gold to zhang fugui"}
 
 

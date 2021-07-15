@@ -20,6 +20,7 @@ loadconfig=function()
 	loadconfigfile("info.ini")
 	if rooms_all==nil then rooms_all="rooms_all.h" end
 	walk["open"]=mapper.open(rooms_all)
+	--loadconfigfile("newpath.lua")
 	if (walk[open]==0) then
 		print "锟斤拷图锟侥硷拷未锟揭碉拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷"
 	else

@@ -17,7 +17,6 @@ on_broadcast=function(msg,global)
 		if #info~=6 then
 			return
 		end
-		print("found",data,#info,info[1],info[2],info[3],info[4],info[5],"|",info[6])
 	on_bc_partyfind(info[1],info[2],info[3],info[4],info[5],info[6])
 	end
 end

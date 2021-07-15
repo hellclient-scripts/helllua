@@ -1121,7 +1121,36 @@ Channel="helllua"
   Inverse = false
   Italic = false
   Variable = ""
-
+[[Triggers]]
+  ID = "d1d3be7okrdc7u6eh7d4g"
+  Name = "walk_slfail"
+  Enabled = true
+  Match = "^(> )*你掂量了一下，觉得自己一苇渡江的绝技还没有炼到家。"
+  Send = ""
+  ColourChangeType = 0
+  Colour = 0
+  Wildcard = 0
+  SoundFileName = ""
+  SoundIfInactive = false
+  Script = "walk_slfail"
+  SendTo = 0
+  Sequence = 100
+  ExpandVariables = false
+  Temporary = false
+  OneShot = false
+  Regexp = true
+  Repeat = false
+  MultiLine = false
+  LinesToMatch = 0
+  WildcardLowerCase = false
+  Group = "system"
+  IgnoreCase = false
+  KeepEvaluating = false
+  OmitFromLog = false
+  OmitFromOutput = false
+  Inverse = false
+  Italic = false
+  Variable = ""
 [[Triggers]]
   ID = "d1d3be7okrddeh6eh7d4h"
   Name = "system_onfight"
