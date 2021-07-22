@@ -181,7 +181,7 @@ end
 
 study["yanjiu"]=function()
 	settags()
-	go(2501,study.yanjiucmd,study.yanjiufail)
+	go(yanjiuloc,study.yanjiucmd,study.yanjiufail)
 end
 
 study["yanjiucmd"]=function()

@@ -176,6 +176,7 @@ getinfo2=function(func,...)
 	getfam()
 	getmudvar()
 	gettouch()
+	getinv()
 	weapon1test()
 	infoend(getinfo3,func,...)
 end
@@ -221,6 +222,15 @@ settags=function()
 	end
 	for i,v in pairs(mypass) do
 		table.insert(tags,"pass-"..i)
+	end
+	local passlist=GetVariable("passlist")
+	local list=SplitN(passlist,",",-1)
+	for i,v in pairs(list) do
+		local pass=Trim(v)
+		local house=housepass[pass.."手谕"]
+		if house~=nil then
+			table.insert(tags,"pass-"..house.name)
+		end
 	end
 	mapper.settags(tags)
 end

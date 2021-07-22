@@ -1,7 +1,6 @@
 --assert  (package.loadlib (luapath.."mapper.dll","luaopen_mapper")) ()
 mapper={}
-mapper.loadLine=function(line)
-end
+
 
 split2=function(v,sep)
 	s=SplitN(v,sep,2)
