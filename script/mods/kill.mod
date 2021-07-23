@@ -66,6 +66,15 @@ do_kill=function(npc,kill_ok,kill_fail)
 	kill.cmd()
 end
 
+do_fight=function(npc,kill_ok,kill_fail)
+	kill["ok"]=kill_ok
+	kill["fail"]=kill_fail
+	kill.npc=npc
+	hook(hooks.fight,pfm)
+	hook(hooks.hurt,pfm)
+	kill.fightcmd()
+end
+
 kill["end"]=function(s)
 	hook(hooks.fight,nil)
 	hook(hooks.hurt,nil)
@@ -94,6 +103,21 @@ kill.cmd=function()
 		pfm()
 	else
 			npchere(kill.npc,getfightpreper()..";kill "..kill.npc..';'..getpfm())
+	end
+	
+	busytest(kill.test)
+end
+kill.fightcmd=function()
+	run("yun recover;yun regenerate")
+	if (me.score.xingge=="心狠手辣")or(me.score.xingge=="光明磊落")and(tonumber(GetVariable("nuqimin"))>2000) then run("burning") end
+	cmd=GetVariable("fightcuff")
+	prewield()
+	if cmd~=nil and cmd~="" then
+		npchere(kill.npc,"fight "..kill.npc)
+		fightcuff()
+		pfm()
+	else
+			npchere(kill.npc,getfightpreper()..";fight "..kill.npc..';'..getpfm())
 	end
 	
 	busytest(kill.test)
@@ -136,6 +160,22 @@ killnpc["ok"]=nil
 killnpc["fail"]=nil
 killnpc["id"]=""
 killnpc["loc"]=nil
+do_fightnpc=function(npcid,loc,killnpc_ok,killnpc_fail)
+	killnpc["ok"]=killnpc_ok
+	killnpc["fail"]=killnpc_fail
+	killnpc["id"]=npcid
+	killnpc["loc"]=loc
+	killnpc.resumefight()
+end
+
+killnpc.resumefight=function()
+	if killnpc["loc"]==nil then
+
+		busytest(killnpc.fightcmd)
+	else
+		go(killnpc["loc"],killnpc.fightcmd,killnpc.fightcmd)
+	end
+end
 
 do_killnpc=function(npcid,loc,killnpc_ok,killnpc_fail)
 	killnpc["ok"]=killnpc_ok
@@ -157,7 +197,10 @@ killnpc.cmd=function()
 	fightpreper()
 	do_kill(killnpc["id"],killnpc_end_ok,killnpc_end_ok)
 end
-
+killnpc.fightcmd=function()
+	fightpreper()
+	do_fight(killnpc["id"],killnpc_end_ok,killnpc_end_ok)
+end
 killnpc["end"]=function(s)
 	if ((s~="")and(s~=nil)) then
 		call(killnpc[s])
@@ -173,4 +216,3 @@ end
 killnpc_end_fail=function()
 	killnpc["end"]("fail")
 end
-

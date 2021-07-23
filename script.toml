@@ -4966,6 +4966,28 @@ Channel="helllua"
   ReverseSpeedwalk = false
   OmitFromOutput = false
   OmitFromCommandHistory = false
+[[Aliases]]
+  ID = "d1d3ic3aqkn74872jkrj8n"
+  Name = "alias_fight"
+  Enabled = true
+  Match = "^#fight\\s{0,1}(.*)$"
+  Send = ""
+  Script = "alias_fight"
+  SendTo = 0
+  Sequence = 0
+  ExpandVariables = false
+  Temporary = false
+  OneShot = false
+  Regexp = true
+  Group = ""
+  IgnoreCase = true
+  KeepEvaluating = true
+  Menu = false
+  OmitFromLog = false
+  Variable = ""
+  ReverseSpeedwalk = false
+  OmitFromOutput = false
+  OmitFromCommandHistory = false
 
 [[Aliases]]
   ID = "d1d3ic3aqkna4h71jkrj8o"
