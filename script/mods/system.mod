@@ -98,6 +98,7 @@ on_hurt=function(name,line,wildcards)
 end
 
 recon=function()
+	queue.discard()
 	DiscardQueue()
 	Disconnect()
 	DeleteTemporaryTimers()
@@ -205,7 +206,7 @@ runre=rex.new("([^;*\\\\]+)")
 run=function(str)
 	ResetTimer("on_steptimeout")
 	if ((str=="")or(str==nil)) then return end
-	SetSpeedWalkDelay(math.floor(1000/cmd_limit))
+	--SetSpeedWalkDelay(math.floor(1000/cmd_limit))
 	_cmds={}
 	local i=0
 	n=runre:gmatch(str,function (m, t)
@@ -219,7 +220,8 @@ run=function(str)
 				cmd="enter "..chatroom
 			end
 		end
-		Queue(cmd,false)
+		queue.exec({cmd})
+		--Queue(cmd,false)
 		if walkecho==true then Note(cmd) end
 	end
 end
@@ -360,6 +362,7 @@ stopall=function()
 	inittri()
 	initweapon()
 	unhookall()
+	queue.discard()
 	DiscardQueue()
 	DeleteTemporaryTimers()
 end

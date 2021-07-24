@@ -4921,6 +4921,25 @@ Channel="helllua"
   OmitFromLog = false
   OmitFromOutput = false
 
+[[Timers]]
+  ID = "d1d3be7okrf0eb6eh7d6m"
+  Name = "queue_timer"
+  Enabled = true
+  Hour = 0
+  Minute = 0
+  Second = 1
+  Send = ""
+  Script = "do_send_queue"
+  AtTime = false
+  SendTo = 0
+  ActionWhenDisconnectd = false
+  Temporary = false
+  OneShot = false
+  Group = "system"
+  Variable = ""
+  OmitFromLog = false
+  OmitFromOutput = false
+
 [[Aliases]]
   ID = "d1d3ic3aqkn1iu71jkrj8m"
   Name = "alias_start"

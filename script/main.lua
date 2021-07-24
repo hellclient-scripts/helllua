@@ -44,3 +44,4 @@ if configcmd~=nil then
 	configcmd()
 end
 loadmod("update.mod")
+loadmod("queue.lua")
