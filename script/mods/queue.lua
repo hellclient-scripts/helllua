@@ -3,10 +3,9 @@ queue={
     tick=2100,
     timestamp=0,
     sent={},
-    sep={},
 }
 
-queue.exec=function(cmds)
+queue.exec=function(cmds,grouped)
     queue.append(cmds)
     queue.send()
 end
@@ -16,9 +15,13 @@ end
 queue.discard=function()
     queue.queue={}
 end
-queue.append=function(cmds)
-    for k,v in pairs(cmds) do
-        table.insert(queue.queue,v)
+queue.append=function(cmds,grouped)
+    if grouped then
+        table.insert(queue.queue,cmds)
+    else
+        for k,v in pairs(cmds) do
+            table.insert(queue.queue,{v})
+        end
     end
 end
 queue.sort=function(fisrt,second)
@@ -30,7 +33,7 @@ queue.full=function()
         table.insert(queue.sent,ts)
     end
 end
-queue.send=function()
+queue.clean=function()
     local ts=Milliseconds()
     table.sort(queue.sent,queue.sort)
     local newsent={}
@@ -40,14 +43,21 @@ queue.send=function()
         end
     end
     queue.sent=newsent
+end
+queue.send=function()
+    queue.clean()
     while #queue.queue~=0 and #queue.sent<queue.limit() do
-        local cmd=table.remove(queue.queue,1)
-        local ts=Milliseconds()
-        table.insert(queue.sent,ts)
-        SendNoEcho(cmd)
-        if queue.sep[cmd] then
+        local cmds=queue.queue[1]
+        if queue.limit()-#queue.sent<#cmds then
             queue.full()
-            return
+            return   
+        end
+        table.remove(queue.queue,1)
+        for k,v in pairs(cmds) do
+            local ts=Milliseconds()
+            table.insert(queue.sent,ts)
+            SendNoEcho(v)
+            if walkecho==true then Note(v) end
         end
     end
 end

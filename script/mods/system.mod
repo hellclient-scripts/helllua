@@ -130,9 +130,7 @@ discon=function()
 end
 
 catch=function(trigrp,command)
-	trigrpon(trigrp)
-	run(command)
-	trigrpoff(trigrp)
+	run(trigrponcmd(trigrp)..";"..command..";"..trigrpoffcmd(trigrp),true)
 end
 busytestdelay=1
 busytestcmd="enchase bao"
@@ -162,13 +160,20 @@ system_trigrpoff=function(name, line, wildcards)
 end
 
 trigrpoff=function(str)
-	run("set no_more trigrpoff "..str)
+	run(trigrpoffcmd(str))
+end
+trigrpoffcmd=function(str)
+	return("set no_more trigrpoff "..str)
 end
 system_trigrpon=function(name, line, wildcards)
 		EnableTriggerGroup(wildcards[2],true)
 end
 trigrpon=function(str)
-	run("set no_more trigrpon "..str)
+	run(trigrponcmd(str))
+end
+
+trigrponcmd=function(str)
+	return "set no_more trigrpon "..str
 end
 
 system_isbusy=function(name, line, wildcards)
@@ -203,7 +208,7 @@ end
 
 _stop=false
 runre=rex.new("([^;*\\\\]+)")
-run=function(str)
+run=function(str,grouped)
 	ResetTimer("on_steptimeout")
 	if ((str=="")or(str==nil)) then return end
 	--SetSpeedWalkDelay(math.floor(1000/cmd_limit))
@@ -217,13 +222,11 @@ run=function(str)
 	for i, cmd in pairs (_cmds) do
 		if cmd=="#gift" then
 			if chatroom~=nil then
-				cmd="enter "..chatroom
+				_cmds[i]="enter "..chatroom
 			end
 		end
-		queue.exec({cmd})
-		--Queue(cmd,false)
-		if walkecho==true then Note(cmd) end
 	end
+	queue.exec(_cmds,grouped)
 end
 
 _nums={}
