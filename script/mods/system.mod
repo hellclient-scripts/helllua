@@ -130,7 +130,10 @@ discon=function()
 end
 
 catch=function(trigrp,command)
-	run(trigrponcmd(trigrp)..";"..command..";"..trigrpoffcmd(trigrp),true)
+	run(catchcmd(trigrp,command),true)
+end
+catchcmd=function(trigrp,command)
+	return(trigrponcmd(trigrp)..";"..command..";"..trigrpoffcmd(trigrp))
 end
 busytestdelay=1
 busytestcmd="enchase bao"
@@ -304,7 +307,10 @@ getnum=function(num)
 end
 
 on_unwield=function(n,l,w)
-	weapon(0)
+	local weaponid=GetVariable("weapon2")
+	local weapon1id=GetVariable("weapon")
+	run("unwield "..weaponid)
+	run("unwield "..weapon1id)
 end
 
 kanbush=function(n,l,w)

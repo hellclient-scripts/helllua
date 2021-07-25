@@ -4,8 +4,11 @@ npc={name="",id="",loc=-1,nobody=0}
 
 npchere=function(npcid,str)
 	npc.nobody=0
-	run("shou "..npcid)
-	catch("nobody",str..";")
+	run(npcherecmd(npcid,str),true)
+end
+npcherecmd=function(npcid,str)
+	npc.nobody=0
+	return("shou "..npcid..";"..catchcmd("nobody",str..";"))
 end
 npc_nobody=function(n,l,w)
 	npc.nobody=1

@@ -43,14 +43,6 @@ getfightpreper=function()
 		cmd=cmd..";yun powerup"
 	end
 	cmd=cmd..";yun recover;yun shield"
-	weapon2id=GetVariable("weapon2")
-	weapon1id=GetVariable("weapon")
-	if weapon2id~="" and weapon2id~=nil then
-			cmd=cmd..";unwield "..weapon2id..";remove"..weapon2id
-	end
-	if weapon1id~="" and weapon1id~=nil then
-		cmd=cmd..";wield "..weapon1id..";wear "..weapon1id
-	end
 	return cmd
 end
 fightpreper=function()
@@ -93,33 +85,17 @@ kill_end_fail=function()
 	kill["end"]("fail")
 end
 kill.cmd=function()
-	run("yun recover;yun regenerate")
-	if (me.score.xingge=="心狠手辣")or(me.score.xingge=="光明磊落")and(tonumber(GetVariable("nuqimin"))>2000) then run("burning") end
-	cmd=GetVariable("fightcuff")
-	prewield()
-	if cmd~=nil and cmd~="" then
-		npchere(kill.npc,"kill "..kill.npc)
-		fightcuff()
-		pfm()
-	else
-			npchere(kill.npc,getfightpreper()..";kill "..kill.npc..';'..getpfm())
-	end
-	
+	local cmds="yun recover;yun regenerate;"
+	if (me.score.xingge=="心狠手辣")or(me.score.xingge=="光明磊落")and(tonumber(GetVariable("nuqimin"))>2000) then cmds=cmds.."burning;" end
+	cmds=cmds..npcherecmd(kill.npc,getfightpreper()..";kill "..kill.npc..';'..fightcuffcmd()..";"..getpfm())
+	run(cmds,true)
 	busytest(kill.test)
 end
 kill.fightcmd=function()
-	run("yun recover;yun regenerate")
-	if (me.score.xingge=="心狠手辣")or(me.score.xingge=="光明磊落")and(tonumber(GetVariable("nuqimin"))>2000) then run("burning") end
-	cmd=GetVariable("fightcuff")
-	prewield()
-	if cmd~=nil and cmd~="" then
-		npchere(kill.npc,"fight "..kill.npc)
-		fightcuff()
-		pfm()
-	else
-			npchere(kill.npc,getfightpreper()..";fight "..kill.npc..';'..getpfm())
-	end
-	
+	local cmds="yun recover;yun regenerate;"
+	if (me.score.xingge=="心狠手辣")or(me.score.xingge=="光明磊落")and(tonumber(GetVariable("nuqimin"))>2000) then cmds=cmds.."burning;" end
+	cmds=cmds..npcherecmd(kill.npc,getfightpreper()..";fight "..kill.npc..';'..fightcuffcmd()..";"..getpfm())
+	run(cmds,true)	
 	busytest(kill.test)
 end
 
@@ -131,25 +107,22 @@ kill.test=function()
 	end
 end
 
-fightcuff=function()
-	if mudvar.powerup==nopowerup.drunk or (cmd~=nil and cmd~="") then
-			weapon(0)
-		if mudvar.powerup==nopowerup.drunk then
-			run("wield mu gun;yong club.zuida;unwield mu gun")
+
+fightcuffcmd=function()
+		local result=""
+		local weapon2id=GetVariable("weapon2")
+		local weapon1id=GetVariable("weapon")
+		if weapon2id~="" and weapon2id~=nil then
+			result="unwield "..weapon2id..";remove"..weapon2id..";"
 		end
-		cmd=GetVariable("fightcuff")
+		local cmd=GetVariable("fightcuff")
 		if cmd~=nil and cmd~="" then
-			run(cmd)
+			result=result..cmd..";"
 		end
-		weapon(1)
-	end
-end
-
-
-prewield=function()
-	if (cmd==nil or cmd=="")and mudvar.powerup~=nopowerup.drunk then
-		weapon(1)
-	end
+		if weapon1id~="" and weapon1id~=nil then
+			result=result.."wield "..weapon1id..";wear "..weapon1id
+		end
+		return result
 end
 
 

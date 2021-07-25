@@ -101,7 +101,10 @@ walk_on_busy=function(name, line, wildcards)
 	end
 end
 walk_onnoweapon=function(n,l,w)
-	weapon(0)
+	local weaponid=GetVariable("weapon2")
+	local weapon1id=GetVariable("weapon")
+	run("unwield "..weapon1id)
+	run("unwield "..weaponid)
 	if ((walking["step"]~=nil)and(hooks.step~=nil)) then
 			run(walking["step"])
 	end

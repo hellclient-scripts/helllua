@@ -9,7 +9,7 @@ do_jiqu=function(jiqu_ok,jiqu_fail)
 end
 
 jiqu.arrive=function()
-	if me.fam=="华山剑宗" then
+	if me.fam=="华山剑宗" or me.fam=="华山气宗" then
 		busytest(jiqu.sword)
 	else
 		busytest(jiqu.cmd)

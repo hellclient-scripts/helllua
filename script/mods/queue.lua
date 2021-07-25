@@ -1,12 +1,12 @@
 queue={
     queue={},
-    tick=2100,
+    tick=1100,
     timestamp=0,
     sent={},
 }
 
 queue.exec=function(cmds,grouped)
-    queue.append(cmds)
+    queue.append(cmds,grouped)
     queue.send()
 end
 queue.limit=function()
@@ -24,18 +24,18 @@ queue.append=function(cmds,grouped)
         end
     end
 end
-queue.sort=function(fisrt,second)
-    return fisrt<second
-end
 queue.full=function()
     local ts=Milliseconds()
     while #queue.sent<queue.limit() do
         table.insert(queue.sent,ts)
     end
 end
+queue.fulltick=function()
+    queue.sent={}
+    queue.full()
+end
 queue.clean=function()
     local ts=Milliseconds()
-    table.sort(queue.sent,queue.sort)
     local newsent={}
     for k,v in pairs(queue.sent) do
         if ts-v<=queue.tick then
@@ -49,7 +49,7 @@ queue.send=function()
     while #queue.queue~=0 and #queue.sent<queue.limit() do
         local cmds=queue.queue[1]
         if queue.limit()-#queue.sent<#cmds then
-            queue.full()
+            queue.fulltick()
             return   
         end
         table.remove(queue.queue,1)
