@@ -24,7 +24,7 @@
 23=钱庄|e:22,
 24=北大街|e:27,n:34,s:22,w*:25,
 25=武庙|e:24,nw:1552,u:1551,
-26=客店|menter0*:2046,s:1553,u*:-1,w:22,menter1:2456,
+26=客店|#gift:2046,s:1553,u*:-1,w:22,menter1:2456,
 27=醉仙楼|e*:28,u:29,w:24,
 28=马厩|goto beijing:1353%10,goto changan:289%10,goto hangzhou:-1,goto hengyang:-1,goto jiaxing:-1,goto nanyang:1066%10,goto suzhou:-1,goto xiangyang:-1,w:27,
 29=醉仙楼二楼|d:27,e*:30,
