@@ -38,21 +38,17 @@ weapon1=function(wield)
 	weaponid=GetVariable("weapon")
 	if weaponid=="" or weaponid==nil then return end
 	if wield==false then
-		if weapon1wielded~=true then return end
 		if weapon1unwieldcmd=="" then
 			run ("unwield "..weaponid..";remove "..weaponid)
 		else
 			run(weapon1unwieldcmd.." "..weaponid)
 		end
-		weapon1wielded=false
 	else
-		if weapon1wielded~=false then return end
 		if weapon1wieldcmd=="" then
 			run ("wield "..weaponid..";wear "..weaponid)
 		else
 			run(weapon1wieldcmd.." "..weaponid)
 		end
-		weapon1wielded=true
 	end
 end
 
@@ -60,21 +56,17 @@ weapon2=function(wield)
 	weaponid=GetVariable("weapon2")
 	if weaponid=="" or weaponid==nil then return end
 	if wield==false then
-		if weapon2wielded~=true then return end
 		if weapon2unwieldcmd=="" then
 			run ("unwield "..weaponid..";remove "..weaponid)
 		else
 			run(weapon2unwieldcmd.." "..weaponid)
 		end
-		weapon2wielded=false
 	else
-		if weapon2wielded~=false then return end
 		if weapon2wieldcmd=="" then
 			run ("wield "..weaponid..";wear "..weaponid)
 		else
 			run(weapon2wieldcmd.." "..weaponid)
 		end
-		weapon2wielded=true
 	end
 end
 
