@@ -8,6 +8,9 @@ npchere=function(npcid,str)
 end
 npcherecmd=function(npcid,str)
 	npc.nobody=0
+	if npcid==nil or npcid=="" then
+		npcid="_"
+	end
 	return("shou "..npcid..";"..catchcmd("nobody",str..";"))
 end
 npc_nobody=function(n,l,w)

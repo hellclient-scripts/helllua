@@ -1,14 +1,16 @@
 blocker={}
 blocker["虚通"]={id="xu tong",exp=50000}
 blocker["虚明"]={id="xu ming",exp=50000}
-blocker["虚通伸手"]={id="xu tong",exp=50000}
-blocker["虚明伸手"]={id="xu ming",exp=50000}
 blocker["校尉"]={id="xiao wei",exp=50000}
 blocker["采花子"]={id="caihua zi",exp=0}
 blocker["衙役"]={id="ya yi",exp=50000}
+blocker["宋兵"]={id="song bing",exp=50000}
+blocker["侍女"]={id="shi nu",exp=50000}
+blocker["亲兵"]={id="qin bing",exp=50000}
+blocker["大汉"]={id="qin bing",exp=100000}
 blocker["摘星子"]={id="zhaixing zi",exp=800000}
-blocker["出尘子伸手"]={id="wuchen zi",exp=-1}
---blocker["劳德诺"]={id="lao denuo",exp=1500000}
+blocker["出尘子"]={id="wuchen zi",exp=-1}
+blocker["劳德诺"]={id="lao denuo",exp=1500000}
 blocker["鳌府侍卫"]={id="shi wei",exp=50000}
 blocker["鳌拜"]={id="ao bai",exp=200000}
 blocker["心砚"]={id="xin yan",exp=790000}
@@ -17,14 +19,16 @@ blocker["蒋四根"]={id="jiang sigen",exp=790000}
 blocker["石双英"]={id="shi shuangying",exp=790000}
 blocker["卫春华"]={id="wei chunhua",exp=790000}
 blocker["杨成协"]={id="yang chengxie",exp=790000}
-blocker["徐天宏长刀一摆，"]={id="xu tianhong",exp=790000}
-blocker["常伯志飞身"]={id="chang bozhi",exp=790000}
+blocker["徐天宏，"]={id="xu tianhong",exp=790000}
+blocker["常伯志"]={id="chang bozhi",exp=790000}
 blocker["常赫志"]={id="chang hezhi",exp=790000}
-blocker["安健刚一把"]={id="an jiangang",exp=790000}
-blocker["孟健雄一把"]={id="meng jianxiong",exp=790000}
-blocker["赵半山笑嘻嘻地"]={id="zhao banshan",exp=790000}
+blocker["安健刚"]={id="an jiangang",exp=790000}
+blocker["孟健雄"]={id="meng jianxiong",exp=790000}
+blocker["赵半山"]={id="zhao banshan",exp=790000}
 blocker["周仲英"]={id="zhou zhongying",exp=790000}
 blocker["陆菲青"]={id="lu feiqing",exp=790000}
+blocker["空见"]={id="kong jian",exp=5000000}
+blocker["道一"]={id="kong jian",exp=50000}
 blocker["无尘"]={id="wuchen daozhang",exp=1190000}
 blocker["拓跋"]={id="tuoba",exp=300000}
 
@@ -33,7 +37,6 @@ blocker["张富贵"]={cmd="give 10 gold to zhang fugui"}
 
 
 block_onnpc=function(n,l,w)
-	print(w[2])
 --	if not(hashook(hooks.steptimeout)) then return end
 	if not(hashook(hooks.step)) then return end
 	if blocker[w[2]]==nil then return end
