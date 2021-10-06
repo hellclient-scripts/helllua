@@ -40,7 +40,7 @@ dutable.main=function()
 		return
 	end
 	if _roomid==-1 then go(0,dutable.main,dutable.main) end
-	if _roomid~=1938 then
+	if _roomid~=2839 then
 		getstatus(dutable["check"])
 	else
 		getstatus(dutable.cmd)

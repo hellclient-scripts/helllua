@@ -1,5 +1,101 @@
 Type = "lua"
-Desc = ""
+Desc = '''
+
+指令列表:
+
+1.任务命令:
+start 师门任务
+
+#assist 协助任务机器人。
+关于协助任务，help quest
+两个id停在同一个地方
+低exp的id,把高exp的id设置在can_accept,比如set can_accept bao,然后#assist
+而高exp的id,#assist 低exp的id,比如 #assist mrbao
+
+#caxie 擦鞋机器人
+#beiqi 做备齐任务
+#letter 送信
+#fish 钓鱼
+#liandan 炼丹
+#stop 停止任务
+#dutable 读石桌
+#canwu 参悟洗髓经
+#dazuo 打坐内力
+#lian 练习技能
+	格式如下:
+	#lian dodge,parry,sword book 练习dodge,parry,读sword book
+	#lian dodge>start 练习满dodge后执行start
+	#lian dodge.feiyan-zoubi,dodge.shenxing-baibian<100 分别激活feiyan-zoubi和shenxing-baibian练习dodge,shenxing-baibian不超过100lv
+	#lian dodge.feiyan-zoubi,parry book>#to 2046
+#kill 杀npc
+	格式:#kill xxx或者 #kill xxx@123
+
+#make 做药
+	格式:#make xxx 20
+
+2.其他命令:
+#to loc 到达某个地点,loc请参考rooms_all.
+#to npc 到达某个npc处.支持npc 中文名/id.具体信息储存在npcs.ini
+spwk 强制停止.
+#kl npc名 城市名 在xx城市杀xx npc
+
+
+
+变量列表:
+1.skilllist:技能列表，具体格式如下:
+技能(学习指令-npc名字-位置)
+其中除了 技能 都可以省略
+学习指令在80w exp前默认为xue,80w以后默认为yanjiu
+范例：
+literate(xue-zhu xi) 朱熹处学习liteate
+force   80w前师傅那里学force/80w后研究force
+higgling(xue-戚长发-26)在26(客店) 向戚长发学习 higgling
+dodge(yanjiu) 研究dodge
+
+
+目前支持的学习指令包括:
+xue,yanjiu,jingxiu,closed,ask,lian
+
+
+
+
+2.goldmin:  数字,最少带多少黄金
+3.flylist: miss的列表,格式为:  命令%当成多少步计算:位置, 比如 miss sword:26%5,指miss sword可以到达26,同时这个动作在计算路径时当5步计算. 可以使用多个命令,每个都必须带 , 号.
+4.potmax: 多少pot去学习.0为不学习
+5.qixuemin:多少气血%去治疗
+6.neilinmin:低与多少内力去休息。
+7.tihuimax多少体会去汲取
+8.weapon 使用的武器 如果是zhenwu jian 之类的特殊门派武器，会自动ask
+9.weapon2 要磨的武器
+10.fightcuff kill后的用的空手技能，比如yun suck。
+11.jinlimin:最低精力
+12 killcmd :等信的时候执行的命令
+13 nuqimin 最小怒气,超过3000自动爆发.
+
+
+14.configfile:制定特别的config文件。
+默认是config.ini
+
+15.fight_preper: 战斗准备技能
+
+可以设成 config-dfcs.ini  东方传说
+
+遥控：
+把遥控者的id设为can_tell
+
+命令为do xxxx
+
+比如 tell bao do #fish
+
+
+解毒:
+
+自动吃聊天室地上的丹药解毒.
+以及budai of here里的9z。
+
+正常情况下，用本机器liandan 或者quest得到的gift会自动丢在相应位置。
+
+'''
 OnOpen = ""
 OnClose = ""
 OnConnect = ""
@@ -184,6 +280,37 @@ Channel="helllua"
   LinesToMatch = 0
   WildcardLowerCase = false
   Group = "charinfo"
+  IgnoreCase = false
+  KeepEvaluating = true
+  OmitFromLog = false
+  OmitFromOutput = false
+  Inverse = false
+  Italic = false
+  Variable = ""
+
+[[Triggers]]
+  ID = "d1d3be7okrbtkm7eh7d3e"
+  Name = "room1noexit"
+  Enabled = true
+  Match = "^(> )*    这里没有任何明显的出路(.*)$"
+  Send = ""
+  ColourChangeType = 0
+  Colour = 0
+  Wildcard = 0
+  SoundFileName = ""
+  SoundIfInactive = false
+  Script = "walk_on_room1"
+  SendTo = 0
+  Sequence = 100
+  ExpandVariables = false
+  Temporary = false
+  OneShot = false
+  Regexp = true
+  Repeat = false
+  MultiLine = false
+  LinesToMatch = 0
+  WildcardLowerCase = false
+  Group = "system"
   IgnoreCase = false
   KeepEvaluating = true
   OmitFromLog = false
@@ -1992,7 +2119,7 @@ Channel="helllua"
   ID = "d1d3ic3aqkm77871jkrj8k"
   Name = "block_onnpc"
   Enabled = true
-  Match = "^(> )*(.*)(上前挡住你，朗声说道：|一把拦住你，喝道：|美目一挑，想走，没门！|喝道：“威……武……|向你喝道：什么人|拦住了你的去路|伸手拦住你说道|喝道：别乱逛|拦住你说：此处乃明教重地|对你道：对不起|喝道：这位|伸手拦住你白眼一翻说道|拦住你说道|迈步挡在你身前|一把拦住你|哈哈一笑|俏眼一瞪|大喝一声|冷哼一声|大吼一声|长刀一摆|飞身挡住你的去路|扭身挡住|笑嘻嘻地挡住你的去路|吹着白胡子|用冷森森的眼光扫了你一眼|长剑电闪|对你道：善哉，后殿|说道: 你未经许可)"
+  Match = "^(> )*(.*)(拦住你道|上前挡住你，朗声说道：|一把拦住你，喝道：|美目一挑，想走，没门！|喝道：“威……武……|向你喝道：什么人|拦住了你的去路|伸手拦住你说道|喝道：别乱逛|拦住你说：此处乃明教重地|对你道：对不起|喝道：这位|伸手拦住你白眼一翻说道|拦住你说道|迈步挡在你身前|一把拦住你|哈哈一笑|俏眼一瞪|大喝一声|冷哼一声|大吼一声|长刀一摆|飞身挡住你的去路|扭身挡住|笑嘻嘻地挡住你的去路|吹着白胡子|用冷森森的眼光扫了你一眼|长剑电闪|对你道：善哉，后殿|说道: 你未经许可)"
   Send = ""
   ColourChangeType = 0
   Colour = -1
@@ -4917,25 +5044,6 @@ Channel="helllua"
   Temporary = false
   OneShot = false
   Group = "timeout"
-  Variable = ""
-  OmitFromLog = false
-  OmitFromOutput = false
-
-[[Timers]]
-  ID = "d1d3be7okrf0eb6eh7d6m"
-  Name = "queue_timer"
-  Enabled = true
-  Hour = 0
-  Minute = 0
-  Second = 0.1
-  Send = ""
-  Script = "do_send_queue"
-  AtTime = false
-  SendTo = 0
-  ActionWhenDisconnectd = false
-  Temporary = false
-  OneShot = false
-  Group = "system"
   Variable = ""
   OmitFromLog = false
   OmitFromOutput = false

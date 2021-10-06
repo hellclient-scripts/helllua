@@ -31,18 +31,18 @@ liandan.pack["龙涎丹"]="longxian dan"
 liandan.pack["邀月丹"]="yaoyue dan"
 liandan.pack["子午龙甲丹"]="longjia dan"
 liandan.pack["幻灵丹"]="huanling dan"
+liandan.pack["Luosha dan"]="luosha dan"
+liandan.pack["轩辕补心丹"]="xuanyuan dan"
+liandan.pack["Baihu dan"]="baihu dan"
+liandan.pack["Qinglong dan"]="qinglong dan"
+liandan.pack["Xuanwu dan"]="xuanwu dan"
+liandan.pack["Zhuque dan"]="zhuque dan"
+liandan.pack["Wanshou dan"]="wanshou dan"
+liandan.pack["Yinyang dan"]="yinyang dan"
+liandan.pack["Change dan"]="change dan"
+liandan.pack["Longwang dan"]="longwang dan"
 liandan.dropgift={}
-liandan.dropgift["Luosha dan"]="luosha dan"
-liandan.dropgift["轩辕补心丹"]="xuanyuan dan"
 liandan.eat={}
-liandan.eat["Wanshou dan"]="wanshou dan"
-liandan.eat["Zhuque dan"]="zhuque dan"
-liandan.eat["Baihu dan"]="baihu dan"
-liandan.eat["Qinglong dan"]="qinglong dan"
-liandan.eat["Xuanwu dan"]="xuanwu dan"
-liandan.eat["Yinyang dan"]="yinyang dan"
-liandan.eat["Change dan"]="change dan"
-liandan.eat["Longwang dan"]="longwang dan"
 liandan.yaoanswer=0
 liandan.tonganswer=0
 liandan.loc={1397,1398,1399,1400,1401}
@@ -84,6 +84,7 @@ liandan.check=function()
 	end
 end
 liandan.packluosha=function()
+	send("keep dan")
 	do_pack("dan","baoguo",liandan["main"],liandan["main"])
 end
 liandan.askyao=function()
@@ -192,8 +193,11 @@ liandan["end"]=function(s)
 	liandan["fail"]=nil
 end
 
-liandan_end_ok=function()
+liandan_end_afterbusy=function()
 	liandan["end"]("ok")
+end
+liandan_end_ok=function()
+	DoAfterSpecial(2,"liandan_end_afterbusy()",12)
 end
 
 liandan_end_fail=function()
