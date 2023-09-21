@@ -5,12 +5,12 @@ me.hp={}
 me.fam={"None"}
 me.special={}
 checkstatus=function()
-run("special;who -n -fam;score1;league;")
+run("special;who -n -fam;score;league;")
 end
 
 score=function()
 	me.score={}
-	catch("charinfo","score1")
+	catch("charinfo","score")
 end
 
 status_on_score1=function (name, line, wildcards)
@@ -27,6 +27,10 @@ end
 
 status_on_teacher=function (name, line, wildcards)
 	me.score["xingge"]=wildcards[1]
+	me.score["teacher"]=wildcards[2]
+end
+status_onteachernew=function(name, line, wildcards)
+	me.score["sex"]=wildcards[1]
 	me.score["teacher"]=wildcards[2]
 end
 status_noteacher=function (name, line, wildcards)
@@ -85,13 +89,13 @@ status_onhpwater=function(name, line, wildcards)
 end
 
 status_onhptihui=function(name, line, wildcards)
-	me.hp.nuqi=wildcards[2]
-	if me.hp.nuqi=="怒火中烧" or me.hp.nuqi=="竖发冲冠" then
-		me.hp.nuqi=10000
-	else
-		me.hp.nuqi=tonumber(me.hp.nuqi)
-	end
-	me.hp["tihui"]=tonumber(wildcards[3])
+	--me.hp.nuqi=wildcards[2]
+	--if me.hp.nuqi=="怒火中烧" or me.hp.nuqi=="竖发冲冠" then
+	--	me.hp.nuqi=10000
+	--else
+	--	me.hp.nuqi=tonumber(me.hp.nuqi)
+	--end
+	me.hp["tihui"]=tonumber(wildcards[1])
 end
 
 getfam=function()

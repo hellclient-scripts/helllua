@@ -50,6 +50,7 @@ letter.questok=function()
 	do_npcinpath(city[letter.city].path,letter.npcfind,letter_end_fail)
 end
 letter.npcfind=function()
+	Note(npc.name)
 	if npc.id==nil or npc.id=="" then
 		npc.id=getcnname(npc.name)
 	end

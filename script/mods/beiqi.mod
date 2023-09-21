@@ -121,6 +121,7 @@ beiqi["askend"]=function()
 		busytest(beiqi.main)
 		return
 	end
+	busytest(beiqi.main)
 end
 
 beiqi_infook=function(n,l,w)

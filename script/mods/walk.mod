@@ -115,7 +115,7 @@ walk_on_room=function (name, line, wildcards,styles)
 	if ((#wildcards[1])~=0)and((#wildcards[1])==styles[1]["length"]) then
 		__textindex=2
 	end
-	if ((#styles)==__textindex)and(styles[__textindex]["textcolour"]==ColourNameToRGB("Cyan")) then
+	if ((#styles)==__textindex)and(styles[__textindex]["textcolour"]==ColourNameToRGB("cyan")) then
 		_roomname=((styles[__textindex]["text"]))
 	end
 end
@@ -339,6 +339,7 @@ convpath=function(path)
 end
 
 on_obj=function(name, line, wildcards)
+	wildcards[2]=string.lower(wildcards[2])
 	_item,num=getitemnum(wildcards[1])
 	if room_obj[wildcards[2]]~=nil then
 		room_obj[wildcards[2]]["num"]=room_obj[wildcards[2]]["num"]+num
@@ -348,7 +349,13 @@ on_obj=function(name, line, wildcards)
 	room_obj[_item]=room_obj[wildcards[2]]
 end
 on_objend=function(name, line, wildcards)
+	--callhook(hooks.step)
 	EnableTriggerGroup("roomobj",false)
+end
+on_objga=function()
+	if GetTriggerOption("on_obj","enabled") then
+		on_objend()
+	end
 end
 walk_npc=function(n,l,w)
 	room_obj[w[2]]={num=1,id=nil}

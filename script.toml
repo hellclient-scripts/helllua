@@ -1,107 +1,22 @@
 Type = "lua"
-Desc = '''
-
-指令列表:
-
-1.任务命令:
-start 师门任务
-
-#assist 协助任务机器人。
-关于协助任务，help quest
-两个id停在同一个地方
-低exp的id,把高exp的id设置在can_accept,比如set can_accept bao,然后#assist
-而高exp的id,#assist 低exp的id,比如 #assist mrbao
-
-#caxie 擦鞋机器人
-#beiqi 做备齐任务
-#letter 送信
-#fish 钓鱼
-#liandan 炼丹
-#stop 停止任务
-#dutable 读石桌
-#canwu 参悟洗髓经
-#dazuo 打坐内力
-#lian 练习技能
-	格式如下:
-	#lian dodge,parry,sword book 练习dodge,parry,读sword book
-	#lian dodge>start 练习满dodge后执行start
-	#lian dodge.feiyan-zoubi,dodge.shenxing-baibian<100 分别激活feiyan-zoubi和shenxing-baibian练习dodge,shenxing-baibian不超过100lv
-	#lian dodge.feiyan-zoubi,parry book>#to 2046
-#kill 杀npc
-	格式:#kill xxx或者 #kill xxx@123
-
-#make 做药
-	格式:#make xxx 20
-
-2.其他命令:
-#to loc 到达某个地点,loc请参考rooms_all.
-#to npc 到达某个npc处.支持npc 中文名/id.具体信息储存在npcs.ini
-spwk 强制停止.
-#kl npc名 城市名 在xx城市杀xx npc
-
-
-
-变量列表:
-1.skilllist:技能列表，具体格式如下:
-技能(学习指令-npc名字-位置)
-其中除了 技能 都可以省略
-学习指令在80w exp前默认为xue,80w以后默认为yanjiu
-范例：
-literate(xue-zhu xi) 朱熹处学习liteate
-force   80w前师傅那里学force/80w后研究force
-higgling(xue-戚长发-26)在26(客店) 向戚长发学习 higgling
-dodge(yanjiu) 研究dodge
-
-
-目前支持的学习指令包括:
-xue,yanjiu,jingxiu,closed,ask,lian
-
-
-
-
-2.goldmin:  数字,最少带多少黄金
-3.flylist: miss的列表,格式为:  命令%当成多少步计算:位置, 比如 miss sword:26%5,指miss sword可以到达26,同时这个动作在计算路径时当5步计算. 可以使用多个命令,每个都必须带 , 号.
-4.potmax: 多少pot去学习.0为不学习
-5.qixuemin:多少气血%去治疗
-6.neilinmin:低与多少内力去休息。
-7.tihuimax多少体会去汲取
-8.weapon 使用的武器 如果是zhenwu jian 之类的特殊门派武器，会自动ask
-9.weapon2 要磨的武器
-10.fightcuff kill后的用的空手技能，比如yun suck。
-11.jinlimin:最低精力
-12 killcmd :等信的时候执行的命令
-13 nuqimin 最小怒气,超过3000自动爆发.
-
-
-14.configfile:制定特别的config文件。
-默认是config.ini
-
-15.fight_preper: 战斗准备技能
-
-可以设成 config-dfcs.ini  东方传说
-
-遥控：
-把遥控者的id设为can_tell
-
-命令为do xxxx
-
-比如 tell bao do #fish
-
-
-解毒:
-
-自动吃聊天室地上的丹药解毒.
-以及budai of here里的9z。
-
-正常情况下，用本机器liandan 或者quest得到的gift会自动丢在相应位置。
-
-'''
+Intro = ""
+Desc = "\n指令列表:\n\n1.任务命令:\nstart 师门任务\n\n#assist 协助任务机器人。\n关于协助任务，help quest\n两个id停在同一个地方\n低exp的id,把高exp的id设置在can_accept,比如set can_accept bao,然后#assist\n而高exp的id,#assist 低exp的id,比如 #assist mrbao\n\n#caxie 擦鞋机器人\n#beiqi 做备齐任务\n#letter 送信\n#fish 钓鱼\n#liandan 炼丹\n#stop 停止任务\n#dutable 读石桌\n#canwu 参悟洗髓经\n#dazuo 打坐内力\n#lian 练习技能\n\t格式如下:\n\t#lian dodge,parry,sword book 练习dodge,parry,读sword book\n\t#lian dodge>start 练习满dodge后执行start\n\t#lian dodge.feiyan-zoubi,dodge.shenxing-baibian<100 分别激活feiyan-zoubi和shenxing-baibian练习dodge,shenxing-baibian不超过100lv\n\t#lian dodge.feiyan-zoubi,parry book>#to 2046\n#kill 杀npc\n\t格式:#kill xxx或者 #kill xxx@123\n\n#make 做药\n\t格式:#make xxx 20\n\n2.其他命令:\n#to loc 到达某个地点,loc请参考rooms_all.\n#to npc 到达某个npc处.支持npc 中文名/id.具体信息储存在npcs.ini\nspwk 强制停止.\n#kl npc名 城市名 在xx城市杀xx npc\n\n\n\n变量列表:\n1.skilllist:技能列表，具体格式如下:\n技能(学习指令-npc名字-位置)\n其中除了 技能 都可以省略\n学习指令在80w exp前默认为xue,80w以后默认为yanjiu\n范例：\nliterate(xue-zhu xi) 朱熹处学习liteate\nforce   80w前师傅那里学force/80w后研究force\nhiggling(xue-戚长发-26)在26(客店) 向戚长发学习 higgling\ndodge(yanjiu) 研究dodge\n\n\n目前支持的学习指令包括:\nxue,yanjiu,jingxiu,closed,ask,lian\n\n\n\n\n2.goldmin:  数字,最少带多少黄金\n3.flylist: miss的列表,格式为:  命令%当成多少步计算:位置, 比如 miss sword:26%5,指miss sword可以到达26,同时这个动作在计算路径时当5步计算. 可以使用多个命令,每个都必须带 , 号.\n4.potmax: 多少pot去学习.0为不学习\n5.qixuemin:多少气血%去治疗\n6.neilinmin:低与多少内力去休息。\n7.tihuimax多少体会去汲取\n8.weapon 使用的武器 如果是zhenwu jian 之类的特殊门派武器，会自动ask\n9.weapon2 要磨的武器\n10.fightcuff kill后的用的空手技能，比如yun suck。\n11.jinlimin:最低精力\n12 killcmd :等信的时候执行的命令\n13 nuqimin 最小怒气,超过3000自动爆发.\n\n\n14.configfile:制定特别的config文件。\n默认是config.ini\n\n15.fight_preper: 战斗准备技能\n\n可以设成 config-dfcs.ini  东方传说\n\n遥控：\n把遥控者的id设为can_tell\n\n命令为do xxxx\n\n比如 tell bao do #fish\n\n\n解毒:\n\n自动吃聊天室地上的丹药解毒.\n以及budai of here里的9z。\n\n正常情况下，用本机器liandan 或者quest得到的gift会自动丢在相应位置。\n\n"
 OnOpen = ""
 OnClose = ""
 OnConnect = ""
 OnDisconnect = "on_disconnect"
-OnBroadcast="on_broadcast"
-Channel="helllua"
+OnBroadcast = "on_broadcast"
+OnFocus = ""
+OnKeyUp = ""
+OnHUDClick = ""
+OnResponse = ""
+OnAssist = ""
+OnBuffer = ""
+OnSubneg = ""
+OnBufferMin = 0
+OnBufferMax = 5
+Channel = "helllua"
+
 [[Triggers]]
   ID = "d1d3be7okrbkfu6eh7d37"
   Name = "status_onjifa"
@@ -289,10 +204,10 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3be7okrbtkm7eh7d3e"
-  Name = "room1noexit"
+  ID = "d1d3be7okrbtkm6eh7d3e"
+  Name = "room1"
   Enabled = true
-  Match = "^(> )*    这里没有任何明显的出路(.*)$"
+  Match = "^(> )*    这里.*的出口是(.*)$"
   Send = ""
   ColourChangeType = 0
   Colour = 0
@@ -320,10 +235,10 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3be7okrbtkm6eh7d3e"
-  Name = "room1"
+  ID = "d1d3be7okrbtkm7eh7d3e"
+  Name = "room1noexit"
   Enabled = true
-  Match = "^(> )*    这里.*的出口是(.*)$"
+  Match = "^(> )*    这里没有任何明显的出路(.*)$"
   Send = ""
   ColourChangeType = 0
   Colour = 0
@@ -478,7 +393,7 @@ Channel="helllua"
   ID = "d1d3be7okrc6486eh7d3l"
   Name = "info_fail"
   Enabled = false
-  Match = "^(> )*(船夫)(摇摇头，说道：没听说过。|疑惑地看着你，摇了摇头。|睁大眼睛望着你，显然不知道你在说什么。|耸了耸肩，很抱歉地说：无可奉告。|说道：嗯....这我可不清楚，你最好问问别人吧。|想了一会儿，说道：对不起，你问的事我实在没有印象。)"
+  Match = "^(> )*(店小二)(摇摇头，说道：没听说过。|疑惑地看着你，摇了摇头。|睁大眼睛望着你，显然不知道你在说什么。|耸了耸肩，很抱歉地说：无可奉告。|说道：嗯....这我可不清楚，你最好问问别人吧。|想了一会儿，说道：对不起，你问的事我实在没有印象。)"
   Send = ""
   ColourChangeType = 0
   Colour = 0
@@ -509,7 +424,7 @@ Channel="helllua"
   ID = "d1d3be7okrc7b46eh7d3m"
   Name = "info_retry"
   Enabled = false
-  Match = "^(> )*(船夫)说道：(阿嚏！有点感冒，不好意思。|等...等等，你说什么？没听清楚。|嗯，稍等啊，就好... 好了，你刚才说啥？|这个... 这个... 哦，好了，啊？你问我呢？|唉呦！... 不好意思，是你问我么？|就好... 就好... 好了，你说啥？|你干啥？没看我忙着呢么？|!)"
+  Match = "^(> )*(店小二)说道：(阿嚏！有点感冒，不好意思。|等...等等，你说什么？没听清楚。|嗯，稍等啊，就好... 好了，你刚才说啥？|这个... 这个... 哦，好了，啊？你问我呢？|唉呦！... 不好意思，是你问我么？|就好... 就好... 好了，你说啥？|你干啥？没看我忙着呢么？|!)"
   Send = ""
   ColourChangeType = 0
   Colour = 0
@@ -632,7 +547,7 @@ Channel="helllua"
 [[Triggers]]
   ID = "d1d3be7okrcd7u6eh7d3r"
   Name = "steppath_fail"
-  Enabled = true
+  Enabled = false
   Match = "^(> )*(你看着浩瀚的太湖，心里不禁打了个突，没敢乱来。|你觉得湖面太宽，没有十足的把握跃过去。|打手一把抓住了你，说道:“这里不是女人该来的地方，你别进去。”|你一抬足，发现地上有毒，忙抽腿退回。)"
   Send = ""
   ColourChangeType = 0
@@ -912,7 +827,7 @@ Channel="helllua"
   ID = "d1d3be7okrcp7g6eh7d45"
   Name = "status_onfamily"
   Enabled = false
-  Match = "^(> )*◎HELL.DE◎  目前江湖中的 \\((.*)\\) 玩家有："
+  Match = "^(> )*◎终极地狱◎  目前江湖中的 \\((.*)\\) 玩家有："
   Send = ""
   ColourChangeType = 0
   Colour = 0
@@ -974,7 +889,7 @@ Channel="helllua"
   ID = "d1d3be7okrcri56eh7d47"
   Name = "beiqi_infook"
   Enabled = false
-  Match = "^(> )*店小二说道：据说(.*)的黄衣卫士急需一批(.*)。嘿！你说他想干什么？$"
+  Match = "^(> )*店小二说道：据说(.*)的西夏兵急需一批(.*)。嘿！你说他想干什么？$"
   Send = ""
   ColourChangeType = 0
   Colour = 0
@@ -1005,7 +920,7 @@ Channel="helllua"
   ID = "d1d3be7okrcsmn6eh7d48"
   Name = "letter_quest"
   Enabled = false
-  Match = "^(> )*洪七公吩咐你在.*之前把信件送到(.*)手中，取回执交差。\\n据闻不久前此人曾经在(.*)。$"
+  Match = "^(> )*张三丰吩咐你在.*之前把信件送到(.*)手中，取回执交差。\\n据闻不久前此人曾经在(.*)。$"
   Send = ""
   ColourChangeType = 0
   Colour = 0
@@ -1248,6 +1163,7 @@ Channel="helllua"
   Inverse = false
   Italic = false
   Variable = ""
+
 [[Triggers]]
   ID = "d1d3be7okrdc7u6eh7d4g"
   Name = "walk_slfail"
@@ -1278,6 +1194,7 @@ Channel="helllua"
   Inverse = false
   Italic = false
   Variable = ""
+
 [[Triggers]]
   ID = "d1d3be7okrddeh6eh7d4h"
   Name = "system_onfight"
@@ -1716,7 +1633,7 @@ Channel="helllua"
   ID = "d1d3be7okre6856eh7d51"
   Name = "status_oncha"
   Enabled = false
-  Match = "^(□|  )(.+)\\s*\\(([a-z-]+)\\)\\s*-\\s*(\\d+)/\\s*(\\d+)%"
+  Match = "^│(□|  )(.+)\\s*\\(([a-z-]+)\\)\\s*-\\s*【.+】\\s*(\\d+)/\\s*(\\d+)\\s*│$"
   Send = ""
   ColourChangeType = 0
   Colour = 0
@@ -1809,7 +1726,7 @@ Channel="helllua"
   ID = "d1d3be7okre9o96eh7d54"
   Name = "status_onhpjinqi"
   Enabled = false
-  Match = "^【 精 气 】\\s*(\\d+)\\s*/\\s*(\\d+)\\s*\\(\\s*(\\d+)%\\)\\s*【 精 力 】\\s*(\\d+)\\s*/\\s*(\\d+)\\s*\\(\\s*\\+(\\d+)\\)"
+  Match = "^│【精气】\\s*(\\d+)\\s*/\\s*(\\d+)\\s*\\[\\s*(\\d+)%\\]\\s*│\\s*【精力】\\s*(\\d+)\\s*/\\s*(\\d+)\\s*\\(\\+\\s*(\\d+)\\)\\s*│$"
   Send = ""
   ColourChangeType = 0
   Colour = 0
@@ -1840,7 +1757,7 @@ Channel="helllua"
   ID = "d1d3be7okreasp6eh7d55"
   Name = "status_onhpqixue"
   Enabled = false
-  Match = "^【 气 血 】\\s*(\\d+)\\s*/\\s*(\\d+)\\s*\\(\\s*(\\d+)%\\)\\s*【 内 力 】\\s*(\\d+)\\s*/\\s*(\\d+)\\s*\\(\\s*\\+(\\d+)\\)"
+  Match = "^│【气血】\\s*(\\d+)\\s*/\\s*(\\d+)\\s*\\[\\s*(\\d+)%\\]\\s*│\\s*【内力】\\s*(\\d+)\\s*/\\s*(\\d+)\\s*\\(\\+\\s*(\\d+)\\)\\s*│$"
   Send = ""
   ColourChangeType = 0
   Colour = 0
@@ -1871,7 +1788,7 @@ Channel="helllua"
   ID = "d1d3be7okrec0q6eh7d56"
   Name = "status_onhpfood"
   Enabled = false
-  Match = "^【 食 物 】\\s*(\\d+)/\\s*(\\d+)\\s*【 潜 能 】\\s*(\\d+)$"
+  Match = "^│【食物】\\s*(\\d+)\\s*/\\s*(\\d+)\\s*\\[.+\\]\\s+│【潜能】\\s*(\\d+)\\s*│$"
   Send = ""
   ColourChangeType = 0
   Colour = 0
@@ -1902,7 +1819,7 @@ Channel="helllua"
   ID = "d1d3be7okred5j6eh7d57"
   Name = "status_onhpwater"
   Enabled = false
-  Match = "^【 饮 水 】\\s*(\\d+)/\\s*(\\d+)\\s*【 经 验 】\\s*(\\d+)$"
+  Match = "^│【饮水】\\s*(\\d+)\\s*/\\s*(\\d+)\\s*\\[.+\\]\\s+│【经验】\\s*(\\d+)\\s*│$"
   Send = ""
   ColourChangeType = 0
   Colour = 0
@@ -1992,7 +1909,69 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkko9k71jkrj8g"
+  ID = "d1f1k6r7o1quij73qe0jk0"
+  Name = "status_onteachernew"
+  Enabled = true
+  Match = "^│性别：(\\S+)\\s*伴侣：\\S+\\s*│师承：(\\S+)\\s*│$"
+  Send = ""
+  ColourChangeType = 0
+  Colour = 0
+  Wildcard = 0
+  SoundFileName = ""
+  SoundIfInactive = false
+  Script = "status_onteachernew"
+  SendTo = 0
+  Sequence = 100
+  ExpandVariables = false
+  Temporary = false
+  OneShot = false
+  Regexp = true
+  Repeat = false
+  MultiLine = false
+  LinesToMatch = 0
+  WildcardLowerCase = false
+  Group = "system"
+  IgnoreCase = false
+  KeepEvaluating = false
+  OmitFromLog = false
+  OmitFromOutput = false
+  Inverse = false
+  Italic = false
+  Variable = ""
+
+[[Triggers]]
+  ID = "d1f1l1jgo9fmus73qfhq81"
+  Name = "on_obj"
+  Enabled = false
+  Match = "^    ([^()]+)\\(([A-Za-z0-9_ ]+)\\)(\\s*[\\<\\[].+[\\>\\]]){0,1}$"
+  Send = ""
+  ColourChangeType = 0
+  Colour = 0
+  Wildcard = 0
+  SoundFileName = ""
+  SoundIfInactive = false
+  Script = "on_obj"
+  SendTo = 0
+  Sequence = 100
+  ExpandVariables = false
+  Temporary = false
+  OneShot = false
+  Regexp = true
+  Repeat = false
+  MultiLine = false
+  LinesToMatch = 0
+  WildcardLowerCase = false
+  Group = "roomobj"
+  IgnoreCase = false
+  KeepEvaluating = false
+  OmitFromLog = false
+  OmitFromOutput = false
+  Inverse = false
+  Italic = false
+  Variable = ""
+
+[[Triggers]]
+  ID = "d1f1l2jc7ss49n73qfkkp3"
   Name = "remote"
   Enabled = true
   Match = "^(> )*[^~].{1,4}\\((.*)\\)告诉你：do (.+)"
@@ -2023,7 +2002,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqklf1i71jkrj8h"
+  ID = "d1f1l2jc7sskmt73qfkkp4"
   Name = "cantell"
   Enabled = false
   Match = "^can_tell\\s*\"(.+)\""
@@ -2054,7 +2033,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqklo5871jkrj8i"
+  ID = "d1f1l2jc7ssslo73qfkkp5"
   Name = "canaccept"
   Enabled = false
   Match = "^can_accept\\s*\"(.+)\""
@@ -2085,9 +2064,9 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqklvm471jkrj8j"
+  ID = "d1f1l2jc7st30f73qfkkp6"
   Name = "mqletter"
-  Enabled = true
+  Enabled = false
   Match = "^(> )*(突然一位|忽听“嗖”的一声|你转身一看|你一回头|你正欲离开|只见你刚想离开|只听扑倏扑倏几声)(.*)(弟子急急忙忙地跑了上来，拍拍你的肩膀|一件暗器从你背后飞来|竟见到一只灰点信鸽飞至身旁，你赶紧|只见一位同门装束的弟子满头大汗地跑了过来|忽然发现不远处的地上一块石头上刻着些什么|一位同门装束的弟子追了上来|一只白鸽飞了过来，落在你肩头)"
   Send = ""
   ColourChangeType = 0
@@ -2116,10 +2095,10 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkm77871jkrj8k"
+  ID = "d1f1l2jc7st7ve73qfkkp7"
   Name = "block_onnpc"
   Enabled = true
-  Match = "^(> )*(.*)(拦住你道|上前挡住你，朗声说道：|一把拦住你，喝道：|美目一挑，想走，没门！|喝道：“威……武……|向你喝道：什么人|拦住了你的去路|伸手拦住你说道|喝道：别乱逛|拦住你说：此处乃明教重地|对你道：对不起|喝道：这位|伸手拦住你白眼一翻说道|拦住你说道|迈步挡在你身前|一把拦住你|哈哈一笑|俏眼一瞪|大喝一声|冷哼一声|大吼一声|长刀一摆|飞身挡住你的去路|扭身挡住|笑嘻嘻地挡住你的去路|吹着白胡子|用冷森森的眼光扫了你一眼|长剑电闪|对你道：善哉，后殿|说道: 你未经许可)"
+  Match = "^(> )*(.*)(拦住你道|上前挡住你，朗声说道：|一把拦住你，喝道：|美目一挑，想走，没门！|喝道：“威……武……|向你喝道：什么人|拦住了你的去路|伸手拦住你说道|喝道：别乱逛|拦住你说：此处乃明教重地|对你道：对不起|喝道：这位|伸手拦住你白眼一翻说道|拦住你说道|迈步挡在你身前|一把拦住你|哈哈一笑|俏眼一瞪|大喝一声|冷哼一声|大吼一声|长刀一摆|飞身挡住你的去路|扭身挡住|笑嘻嘻地挡住你的去路|吹着白胡子|用冷森森的眼光扫了你一眼|长剑电闪|对你道：善哉，后殿|说道: 你未经许可|大声喝道：他奶奶的，你要干嘛|挡住了你：我的小妞可不是给你们邪派弟子准备的！)"
   Send = ""
   ColourChangeType = 0
   Colour = -1
@@ -2147,7 +2126,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkmhf071jkrj8l"
+  ID = "d1f1l2jc7stdbb73qfkkp8"
   Name = "mqlettercontent"
   Enabled = false
   Match = "^(> )*“字谕弟子(.*?)：(得闻恶贼|武林人士|得闻所谓大侠)(.*?)(屡次和我派作对|打家劫舍|所为甚是讨厌)(.*)\\n(.*)出没，正是大好机会将他除去"
@@ -2165,8 +2144,8 @@ Channel="helllua"
   OneShot = false
   Regexp = true
   Repeat = false
-  MultiLine = false
-  LinesToMatch = 0
+  MultiLine = true
+  LinesToMatch = 2
   WildcardLowerCase = false
   Group = "mqletter"
   IgnoreCase = false
@@ -2178,10 +2157,10 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkpau071jkrj99"
+  ID = "d1f1l2jc7svdfd73qfkkps"
   Name = "mqletterquest"
   Enabled = false
-  Match = "^(> )*苏星河吩咐你在(.*)之前割下(.*)的人头，回(.*)交差。\\n据说此人前不久曾经在(.*)出没。"
+  Match = "^(> )*洪七公吩咐你在(.*)之前割下(.*)的人头，回(.*)交差。\\n据说此人前不久曾经在(.*)出没。"
   Send = ""
   ColourChangeType = 0
   Colour = -1
@@ -2196,8 +2175,8 @@ Channel="helllua"
   OneShot = false
   Regexp = true
   Repeat = false
-  MultiLine = false
-  LinesToMatch = 0
+  MultiLine = true
+  LinesToMatch = 2
   WildcardLowerCase = false
   Group = "mqletterquest"
   IgnoreCase = false
@@ -2209,7 +2188,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkq1oj71jkrj9a"
+  ID = "d1f1l2jc7svlpg73qfkkpt"
   Name = "mqquestnum"
   Enabled = false
   Match = "^师长交给你的任务，你已经连续完成了\\s*(\\d*)\\s*个。"
@@ -2240,9 +2219,9 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkq9gl71jkrj9b"
+  ID = "d1f1l2jc7svrfs73qfkkpu"
   Name = "mqlettertimeout"
-  Enabled = true
+  Enabled = false
   Match = "^(> )*你(皱了皱眉，道：“我还是不去了，你让师傅|摇了摇头，将信函随手一撕。)"
   Send = ""
   ColourChangeType = 0
@@ -2271,7 +2250,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkqfrj71jkrj9c"
+  ID = "d1f1l2jc7t00ch73qfkkpv"
   Name = "unwield"
   Enabled = true
   Match = "^(> )*练.*必须空手。"
@@ -2302,7 +2281,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkqmjo71jkrj9d"
+  ID = "d1f1l2jc7t04vk73qfkkq0"
   Name = "sell_broken"
   Enabled = true
   Match = "^(> )*唐楠随手一扔，道：(.*)一文不值！"
@@ -2333,7 +2312,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkqu0c71jkrj9e"
+  ID = "d1f1l2jc7t0a2g73qfkkq1"
   Name = "pick_full"
   Enabled = false
   Match = "^(> )*((.*)对你而言太重了。|你身上的东西实在是太多了，没法再拿东西了。)"
@@ -2364,7 +2343,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkr4sd71jkrj9f"
+  ID = "d1f1l2jc7t0frf73qfkkq2"
   Name = "walk_boatout"
   Enabled = true
   Match = "^(> )*(少女说: “到啦，上岸吧。”，随即一点竹篙，把舟泊好。|艄公说“到啦，上岸吧”，随即把一块踏脚板搭上堤岸。)"
@@ -2395,7 +2374,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkrsi471jkrj9g"
+  ID = "d1f1l2jc7t0kn773qfkkq3"
   Name = "walk_taihucrossfail"
   Enabled = true
   Match = "^(> )*(你觉得湖面太宽，没有十足的把握跃过去。|你看着浩瀚的太湖，心里不禁打了个突，没敢乱来。|你使劲儿一蹦，离瀑布顶还有数丈远就掉了下来，摔的鼻青)"
@@ -2426,7 +2405,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqks3ts71jkrj9h"
+  ID = "d1f1l2jc7t0pa473qfkkq4"
   Name = "kanbush"
   Enabled = true
   Match = "^(> )*不用武器恐怕不行吧|要刺墙不用家伙恐怕不行吧！"
@@ -2457,7 +2436,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqksa0i71jkrj9i"
+  ID = "d1f1l2jc7t0u5a73qfkkq5"
   Name = "walk_gwriver"
   Enabled = true
   Match = "^(> )*(你觉得河面太宽，没有十足的把握跃过去。|你看着奔腾不息的白河，心里有点紧张，不敢乱来。|船厂里走出一个船夫，瞪着眼看着你|船夫在旁边拿眼瞪着你看)"
@@ -2488,7 +2467,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqksgkv71jkrj9j"
+  ID = "d1f1l2jc7t138q73qfkkq6"
   Name = "mqletterflee"
   Enabled = false
   Match = "^(不好了，(.*)在|你刚想离开，突然(.*)喊道)"
@@ -2519,7 +2498,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqksnfo71jkrj9k"
+  ID = "d1f1l2jc7t17l173qfkkq7"
   Name = "giftbaoguofail"
   Enabled = false
   Match = "^(> )*(包裹|布袋)里面的东西实在是太多了，你先好好整理整理吧。"
@@ -2550,10 +2529,10 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqksuk471jkrj9l"
+  ID = "d1f1l2jc7t1c1a73qfkkq8"
   Name = "giftbaoguoheavy"
   Enabled = false
-  Match = "^(> )*([^`].(..){1,4})对包裹而言太重了。"
+  Match = "^(> )*([^`].(..){1,7})对包裹而言太重了。"
   Send = ""
   ColourChangeType = 0
   Colour = -1
@@ -2581,7 +2560,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkt4t671jkrj9m"
+  ID = "d1f1l2jc7t1gm573qfkkq9"
   Name = "enterchatfail"
   Enabled = false
   Match = "^(> )*(没有这个聊天室。|人家不欢迎你，你还是别去扫兴了。)"
@@ -2612,7 +2591,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqktbei71jkrj9n"
+  ID = "d1f1l2jc7t1lfs73qfkkqa"
   Name = "mudvar_chatroom"
   Enabled = false
   Match = "^chatroom\\s*=\\s*(.+)"
@@ -2643,7 +2622,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkthfr71jkrj9o"
+  ID = "d1f1l2jc7t1qer73qfkkqb"
   Name = "mudvar_eatjz"
   Enabled = false
   Match = "^eat9z\\s*=\\s*(.+)"
@@ -2674,7 +2653,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkto6d71jkrj9p"
+  ID = "d1f1l2jc7t1vkt73qfkkqc"
   Name = "mudvar_dragon"
   Enabled = false
   Match = "^dragon\\s*=\\s*(.+)"
@@ -2705,7 +2684,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqktv7e71jkrj9q"
+  ID = "d1f1l2jc7t24th73qfkkqd"
   Name = "mudvar_nopowerup"
   Enabled = false
   Match = "^nopowerup\\s*=\\s*(.+)"
@@ -2736,10 +2715,10 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqku61g71jkrj9r"
+  ID = "d1f1l2jc7t297u73qfkkqe"
   Name = "mqhelper1"
   Enabled = false
-  Match = "^(> )*樊译(大声喝道：“好一个|忽然撮舌吹哨，你听了不禁微微一愣。|一声长啸，声音绵泊不绝，远远的传了开去。)"
+  Match = "^(> )*bao(大声喝道：“好一个|忽然撮舌吹哨，你听了不禁微微一愣。|一声长啸，声音绵泊不绝，远远的传了开去。)"
   Send = ""
   ColourChangeType = 0
   Colour = -1
@@ -2767,7 +2746,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkucsa71jkrj9s"
+  ID = "d1f1l2jc7t2ekp73qfkkqf"
   Name = "mqhelper"
   Enabled = false
   Match = "^(> )*说时迟，那时快！突然转出(.*)个人，一起冲上前来，看来是早有防备！$"
@@ -2798,7 +2777,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkukum71jkrj9t"
+  ID = "d1f1l2jc7t2jt273qfkkqg"
   Name = "l_2369"
   Enabled = false
   Match = "^    这是一片空地，四周都是乱石，杂草丛生。北边是一间小屋。南"
@@ -2829,7 +2808,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkurhi71jkrj9u"
+  ID = "d1f1l2jc7t2oo273qfkkqh"
   Name = "l_1733"
   Enabled = false
   Match = "^    这是一片茂密的青竹林，一走进来，你仿佛迷失了方向。"
@@ -2860,7 +2839,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkv3qo71jkrj9v"
+  ID = "d1f1l2jc7t2tkf73qfkkqi"
   Name = "l_2366"
   Enabled = false
   Match = "^    这里就是神龙岛了。南边是一望无际的大海；"
@@ -2891,9 +2870,9 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkva1771jkrja0"
+  ID = "d1f1l2jc7t32ar73qfkkqj"
   Name = "on_partyhelp"
-  Enabled = true
+  Enabled = false
   Match = "^(> )*【(明教|天地会)】.{1,4}\\[(.*)\\]：helllua-help-(.*)-(.*)"
   Send = ""
   ColourChangeType = 0
@@ -2922,9 +2901,9 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkvgfc71jkrja1"
+  ID = "d1f1l2jc7t373i73qfkkqk"
   Name = "on_partyfind"
-  Enabled = true
+  Enabled = false
   Match = "^(> )*【(明教|天地会)】.{1,4}\\[(.*)\\]：helllua.find-(.*)-(.*)-(.*)-(.*)"
   Send = ""
   ColourChangeType = 0
@@ -2953,7 +2932,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkvmnl71jkrja2"
+  ID = "d1f1l2jc7t3bj673qfkkql"
   Name = "event_dragonfind"
   Enabled = false
   Match = "^(> )*【(明教|天地会)】.{1,4}\\[(.*)\\]：helllua.dragon-(.*)-(.*)-(.*)"
@@ -2984,7 +2963,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqkvt0a71jkrja3"
+  ID = "d1f1l2jc7t3ged73qfkkqm"
   Name = "event_dragonfind2"
   Enabled = false
   Match = "^(> )*【(明教|天地会)】.{1,4}\\[(.*)\\]：Dragon：()().+\\.(.*)"
@@ -3015,7 +2994,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql0c5q71jkrja5"
+  ID = "d1f1l2jc7t3shl73qfkkqo"
   Name = "study_fail"
   Enabled = false
   Match = "^(> )*(你今天太累了，结果什么也没有研究成。|然而你今天太累了|也许是缺乏实战经验|你要向谁求教？|你的.*火候不够|你的.*水平有限|这项技能你的程度已经不输你师父了。|这项技能你恐怕必须找别人学了|[^a-zA-Z0-9、 ()【】.。,，:：;；?？!！]+说：嗯.... 你的.*功力已经是非同凡响了，我就不再教你，你自己多研究吧。|你对.*的掌握程度还未到研究的程度。)"
@@ -3046,7 +3025,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql0r4371jkrja6"
+  ID = "d1f1l2jc7t46q573qfkkqp"
   Name = "status_onrank"
   Enabled = false
   Match = "^(> )*你现在的江湖头衔：(.*)"
@@ -3077,10 +3056,10 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql11hu71jkrja7"
+  ID = "d1f1l2jc7t4c3u73qfkkqq"
   Name = "status_onname"
   Enabled = false
-  Match = "^(> )*【 少  女 】.*( |」)((..){1,4})\\(\\w+\\)$"
+  Match = "^(> )*rank.*( |」)((..){1,4})\\(\\w+\\)$"
   Send = ""
   ColourChangeType = 0
   Colour = -1
@@ -3108,7 +3087,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql17f471jkrja8"
+  ID = "d1f1l2jc7t4hbp73qfkkqr"
   Name = "mqinfosl"
   Enabled = false
   Match = "^(最近)(.*)(在)(.*)作恶多端，你去把他除了，提头来见。”"
@@ -3139,7 +3118,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql1e1e71jkrja9"
+  ID = "d1f1l2jc7t4mr373qfkkqs"
   Name = "systemlogdelay"
   Enabled = true
   Match = "^你不能在 .* 秒钟之内连续重新连线。"
@@ -3170,7 +3149,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql1jg671jkrjaa"
+  ID = "d1f1l2jc7t4rgm73qfkkqt"
   Name = "npc_killme"
   Enabled = true
   Match = "^(> )*(.{1,4})(一见到你|和你一碰面|对著你大喝：「可恶|喝道：「你|一眼瞥见你|和你仇人相见分外眼红)"
@@ -3201,7 +3180,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql1q2b71jkrjab"
+  ID = "d1f1l2jc7t500673qfkkqu"
   Name = "walk_busy"
   Enabled = true
   Match = "^(> )*(你的动作还没有完成，不能移动|你逃跑失败|你被拦住了去路|你突然发现眼前的景象有些迷乱|你太累了，还是休息一会儿吧|你的内力不够，还是休息一下再说吧|现在白雕正忙着|只听得湖面上隐隐传来：“就来了啦……”|只听得湖面上隐隐传来：“别急嘛，这儿正忙着呐……”)"
@@ -3232,7 +3211,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql20r071jkrjac"
+  ID = "d1f1l2jc7t549q73qfkkqv"
   Name = "l_1136"
   Enabled = false
   Match = "^    这里是少林寺前的广场，整个广场由大块的青石铺成，极为"
@@ -3263,7 +3242,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql26a971jkrjad"
+  ID = "d1f1l2jc7t593f73qfkkr0"
   Name = "l_1673"
   Enabled = false
   Match = "^    这里是六和塔的底层。窗\\(window\\)外是浓妆淡抹的西子湖"
@@ -3294,7 +3273,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql2c5j71jkrjae"
+  ID = "d1f1l2jc7t5e2n73qfkkr1"
   Name = "l_2298"
   Enabled = false
   Match = "^    这里是六和塔的二层。窗\\(window\\)外是浓妆淡抹的西子湖"
@@ -3325,7 +3304,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql2het71jkrjaf"
+  ID = "d1f1l2jc7t5iee73qfkkr2"
   Name = "l_2299"
   Enabled = false
   Match = "^    这里是六和塔的三层。窗\\(window\\)外是浓妆淡抹的西子湖"
@@ -3356,7 +3335,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql2mup71jkrjag"
+  ID = "d1f1l2jc7t5mrt73qfkkr3"
   Name = "l_2300"
   Enabled = false
   Match = "^    这里是六和塔的四层。窗\\(window\\)外是浓妆淡抹的西子湖"
@@ -3387,7 +3366,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql2s9e71jkrjah"
+  ID = "d1f1l2jc7t5r4773qfkkr4"
   Name = "l_2301"
   Enabled = false
   Match = "^    这里是六和塔的五层。窗\\(window\\)外是浓妆淡抹的西子湖"
@@ -3418,7 +3397,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql32p171jkrjai"
+  ID = "d1f1l2jc7t5vv873qfkkr5"
   Name = "l_2302"
   Enabled = false
   Match = "^    这里是六和塔的六层。窗\\(window\\)外是浓妆淡抹的西子湖"
@@ -3449,7 +3428,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql37v271jkrjaj"
+  ID = "d1f1l2jc7t64b573qfkkr6"
   Name = "l_2303"
   Enabled = false
   Match = "^    这里是六和塔的七层。窗\\(window\\)外是浓妆淡抹的西子湖"
@@ -3480,7 +3459,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql3d3j71jkrjak"
+  ID = "d1f1l2jc7t68t773qfkkr7"
   Name = "l_2304"
   Enabled = false
   Match = "^    这里是六和塔的八层。窗\\(window\\)外是浓妆淡抹的西子湖"
@@ -3511,7 +3490,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql3i9b71jkrjal"
+  ID = "d1f1l2jc7t6di973qfkkr8"
   Name = "l_2305"
   Enabled = false
   Match = "^    这里是六和塔的九层。窗\\(window\\)外是浓妆淡抹的西子湖"
@@ -3542,7 +3521,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql3ndk71jkrjam"
+  ID = "d1f1l2jc7t6i0p73qfkkr9"
   Name = "l_26"
   Enabled = false
   Match = "^    这是一家价钱低廉的客栈，生意非常兴隆。外地游客多选择这里落脚，你"
@@ -3573,7 +3552,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql3uns71jkrjan"
+  ID = "d1f1l2jc7t6ncm73qfkkra"
   Name = "l_54"
   Enabled = false
   Match = "^    这是南城门，城墙被当成了广告牌，贴满了花花绿绿各行各业的广告，"
@@ -3604,7 +3583,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql442971jkrjao"
+  ID = "d1f1l2jc7t6ru973qfkkrb"
   Name = "l_34"
   Enabled = false
   Match = "^    这是北城门，因为曾经失火，到现在城墙还是黑乎乎的，因此白纸"
@@ -3635,7 +3614,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql49os71jkrjap"
+  ID = "d1f1l2jc7t70c473qfkkrc"
   Name = "jiqu_fail"
   Enabled = true
   Match = "^(> )*(你的实战经验太浅，还无法领会通过实战获得的心得。|你感觉自己的实战经验还有欠缺，还无法领会更高境界的武学修养。|你现在精神不济，难以抓住实战体会中的秘要！|你现在没有充足的体力用来吸收实战的心得。)"
@@ -3666,10 +3645,10 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql4g6u71jkrjaq"
+  ID = "d1f1l2jc7t74iu73qfkkrd"
   Name = "study_needweapon"
   Enabled = false
-  Match = "^(> )*你必须先找一.*才能练.*法。"
+  Match = "^(> )*你必须先找一.*才能.*法。"
   Send = ""
   ColourChangeType = 0
   Colour = -1
@@ -3697,7 +3676,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql4m5871jkrjar"
+  ID = "d1f1l2jc7t79h573qfkkre"
   Name = "items_onbagsstart"
   Enabled = false
   Match = "^(> )*设定环境变数：no_more = \"getbag-(.+)\"$"
@@ -3728,7 +3707,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql4sam71jkrjas"
+  ID = "d1f1l2jc7t7e4673qfkkrf"
   Name = "items_onbagsend"
   Enabled = false
   Match = "^(> )*设定环境变数：no_more = \"getbagend\"$"
@@ -3759,7 +3738,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql52bf71jkrjat"
+  ID = "d1f1l2jc7t7je673qfkkrg"
   Name = "walk_maxstep"
   Enabled = true
   Match = "^(> )*设定环境变数：no_more = \"maxstep\"$"
@@ -3790,7 +3769,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql5et771jkrjau"
+  ID = "d1f1l2jc7t7sa673qfkkrh"
   Name = "items_onbagitems"
   Enabled = false
   Match = "^    ([^a-z!@#$%\\^&*()\\\\/.,<> ]+)\\((\\w*\\s{0,1}\\w+)\\)$"
@@ -3821,7 +3800,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql5kga71jkrjav"
+  ID = "d1f1l2jc7t811173qfkkri"
   Name = "heal_danbusy"
   Enabled = false
   Match = "^(> )*你的内力不足，无法运满一个周天。$"
@@ -3852,7 +3831,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql5qdn71jkrjb0"
+  ID = "d1f1l2jc7t86ie73qfkkrj"
   Name = "heal_neilifail"
   Enabled = false
   Match = "^(> )*你刚服用过药，需药性发挥完效用以后才能继续服用。$"
@@ -3883,10 +3862,10 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql609f71jkrjb1"
+  ID = "d1f1l2jc7t8bjl73qfkkrk"
   Name = "status_onhptihui"
   Enabled = false
-  Match = "^(【 平 和 】|【 愤 怒 】)\\s*([^/ ]*).*【 体 会 】(.*)$"
+  Match = "^│\\s*│【体会】\\s*(\\d+)\\s*│$"
   Send = ""
   ColourChangeType = 0
   Colour = -1
@@ -3914,7 +3893,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql66kk71jkrjb2"
+  ID = "d1f1l2jc7t8fod73qfkkrl"
   Name = "on_getweapon"
   Enabled = true
   Match = "^(> )*你手腕一麻，手中(.*)不由脱手而出！"
@@ -3945,7 +3924,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql6c0l71jkrjb3"
+  ID = "d1f1l2jc7t8k7473qfkkrm"
   Name = "study_gold"
   Enabled = false
   Match = "^(> )*(朱熹|厨娘|戚长发)(说道：您太客气了，这怎么敢当？|笑着说道：您见笑了，我这点雕虫小技怎够资格「指点」您什么？|像是受宠若惊一样，说道：请教？这怎么敢当？)"
@@ -3976,7 +3955,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql6hd571jkrjb4"
+  ID = "d1f1l2jc7t8p2f73qfkkrn"
   Name = "askyouok"
   Enabled = false
   Match = "^(> )*游讯嘿嘿奸笑两声，对你小声道：“没有问题，不过得要50两黄金，不二价！”"
@@ -4007,7 +3986,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql6n0a71jkrjb5"
+  ID = "d1f1l2jc7t8udd73qfkkro"
   Name = "makeyao_buy"
   Enabled = false
   Match = "^(> )*你点了点药材，发现(.*)的分量还不够。"
@@ -4038,7 +4017,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql6t4t71jkrjb6"
+  ID = "d1f1l2jc7t93m573qfkkrp"
   Name = "makeyao_fail"
   Enabled = false
   Match = "^(> )*你还不会配这种药啊！"
@@ -4069,7 +4048,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql72k871jkrjb7"
+  ID = "d1f1l2jc7t986p73qfkkrq"
   Name = "makeyao_ok"
   Enabled = false
   Match = "^(> )*你把「%%%」成功的制好了！"
@@ -4100,7 +4079,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql78gb71jkrjb8"
+  ID = "d1f1l2jc7t9cir73qfkkrr"
   Name = "mqassistkill"
   Enabled = false
   Match = "^(> )*你对著sss喝道："
@@ -4131,7 +4110,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql7ejg71jkrjb9"
+  ID = "d1f1l2jc7t9mt373qfkkrs"
   Name = "mqassister"
   Enabled = false
   Match = "^(> )*([^`].(..){1,3})决定帮助你一同完成任务，你是否同意\\(right\\|refuse (.+)\\)？"
@@ -4162,7 +4141,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql7ksa71jkrjba"
+  ID = "d1f1l2jc7t9sb273qfkkrt"
   Name = "mqassistor"
   Enabled = false
   Match = "^(> )*([^`].(..){1,3})愿意接受你的帮助。"
@@ -4193,7 +4172,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql7r1971jkrjbb"
+  ID = "d1f1l2jc7ta2a773qfkkru"
   Name = "mqassistreport"
   Enabled = false
   Match = "^(> )*你告诉ssss\\(Ddddd\\)"
@@ -4224,7 +4203,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql81ih71jkrjbc"
+  ID = "d1f1l2jc7ta76a73qfkkrv"
   Name = "mqassistnpc"
   Enabled = false
   Match = "^(> )*ssss\\(Ddddd\\)告诉你：npckill\\.(.*)\\.(.*)\\.(.*)"
@@ -4255,7 +4234,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql87bn71jkrjbd"
+  ID = "d1f1l2jc7tac0o73qfkks0"
   Name = "mqassistok"
   Enabled = false
   Match = "^(> )*ssss\\(Ddddd\\)告诉你：npckillok"
@@ -4286,7 +4265,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql8der71jkrjbe"
+  ID = "d1f1l2jc7tagmn73qfkks1"
   Name = "walk_onnoweapon"
   Enabled = true
   Match = "^(> )*(张翠山道：“各色人等，到解剑岩都需解剑，千百年来概无例外！”你慑于武当山规，|王五上前挡住你，朗声说道：这位)"
@@ -4317,7 +4296,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql8k5871jkrjbf"
+  ID = "d1f1l2jc7tal6a73qfkks2"
   Name = "item_needfill"
   Enabled = true
   Match = "^(> )*你从.*那里买下了(一|二|三|四|五|六|七|八|九|十|百)+..牛皮水袋。"
@@ -4348,7 +4327,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql8v4271jkrjbh"
+  ID = "d1f1l2jc7taubv73qfkks4"
   Name = "system_login"
   Enabled = true
   Match = "目前共有 \\d* 位巫师、\\d* 位玩家在线上，以及 \\d* 位使用者尝试连线中。"
@@ -4379,7 +4358,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql95sp71jkrjbi"
+  ID = "d1f1l2jc7tb3f273qfkks5"
   Name = "status_testtouch"
   Enabled = false
   Match = "^(> )*你轻轻一弹.*，长吟道：“别来无恙乎？|你轻轻抚过.*，感慨良深，作古风一首，.*铃铃作响，似以和之。|你抓着.*，沉思良久。"
@@ -4410,7 +4389,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql9blb71jkrjbj"
+  ID = "d1f1l2jc7tb92973qfkks6"
   Name = "missok"
   Enabled = true
   Match = "^(> )*你口中念念有词，转瞬天际一道长虹划过，你驾彩虹而走。"
@@ -4441,7 +4420,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql9hes71jkrjbk"
+  ID = "d1f1l2jc7tbdpq73qfkks7"
   Name = "walkdogkill"
   Enabled = true
   Match = "^(> )*看起来(.*)想杀死你！"
@@ -4472,7 +4451,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql9nh671jkrjbl"
+  ID = "d1f1l2jc7tbi0573qfkks8"
   Name = "flyfail"
   Enabled = true
   Match = "^(> )*^(> )*(你已经超过17岁了，无法再使用这个指令回到客店了。|你身上带著密函，不能施展。|你要召唤什么物品？|你不知道如何召唤这个物品|你已经在扬州客店了。|你摸着.*，发了半天的呆。|你觉得.*的感觉相当飘忽，看来精力不济，难以感应。|你瞪着.*，看啥？|你摸着.*，发了半天的呆。)"
@@ -4503,7 +4482,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aql9ts171jkrjbm"
+  ID = "d1f1l2jc7tbml273qfkks9"
   Name = "lianrest"
   Enabled = false
   Match = "^(> )*(你的内力不够练.*。|你现在太累了，结果一行也没有看下去。)$"
@@ -4534,69 +4513,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqla3l771jkrjbn"
-  Name = "on_objend"
-  Enabled = true
-  Match = "^(> )+"
-  Send = ""
-  ColourChangeType = 0
-  Colour = -1
-  Wildcard = 0
-  SoundFileName = ""
-  SoundIfInactive = false
-  Script = "on_objend"
-  SendTo = 0
-  Sequence = 100
-  ExpandVariables = false
-  Temporary = false
-  OneShot = false
-  Regexp = true
-  Repeat = false
-  MultiLine = false
-  LinesToMatch = 0
-  WildcardLowerCase = false
-  Group = "roomobj"
-  IgnoreCase = false
-  KeepEvaluating = true
-  OmitFromLog = false
-  OmitFromOutput = false
-  Inverse = false
-  Italic = false
-  Variable = ""
-
-[[Triggers]]
-  ID = "d1d3ic3aqlaao271jkrjbo"
-  Name = "on_obj"
-  Enabled = true
-  Match = "^  (.+)\\(([A-Za-z0-9_ ]+)\\)$"
-  Send = ""
-  ColourChangeType = 0
-  Colour = -1
-  Wildcard = 0
-  SoundFileName = ""
-  SoundIfInactive = false
-  Script = "on_obj"
-  SendTo = 0
-  Sequence = 100
-  ExpandVariables = false
-  Temporary = false
-  OneShot = false
-  Regexp = true
-  Repeat = false
-  MultiLine = false
-  LinesToMatch = 0
-  WildcardLowerCase = false
-  Group = "roomobj"
-  IgnoreCase = false
-  KeepEvaluating = true
-  OmitFromLog = false
-  OmitFromOutput = false
-  Inverse = false
-  Italic = false
-  Variable = ""
-
-[[Triggers]]
-  ID = "d1d3ic3aqlah1k71jkrjbp"
+  ID = "d1f1l2jc7tbrt773qfkksa"
   Name = "on_drunk2"
   Enabled = true
   Match = "^(> )*你觉得脑中昏昏沉沉，身子轻飘飘地，大概是醉了。$"
@@ -4627,7 +4544,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqlamv471jkrjbq"
+  ID = "d1f1l2jc7tc0db73qfkksb"
   Name = "on_drunk"
   Enabled = true
   Match = "^(> )*你觉得一阵酒意上冲，眼皮有些沉重了。$"
@@ -4658,7 +4575,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqlat0q71jkrjbr"
+  ID = "d1f1l2jc7tc4li73qfkksc"
   Name = "dazuofull"
   Enabled = false
   Match = "^(> )*你的内力修为似乎已经达到了瓶颈。$"
@@ -4689,7 +4606,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqlb2ul71jkrjbs"
+  ID = "d1f1l2jc7tc9gm73qfkksd"
   Name = "lianwield"
   Enabled = false
   Match = "^(> )*你使用的武器不对。$"
@@ -4720,7 +4637,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqlb8lt71jkrjbt"
+  ID = "d1f1l2jc7tcelu73qfkkse"
   Name = "event_acceptrecon"
   Enabled = false
   Match = "^(> )*你还是把眼前的敌人放倒再说吧！$"
@@ -4751,7 +4668,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqlbej871jkrjbu"
+  ID = "d1f1l2jc7tcjlh73qfkksf"
   Name = "event_acceptretry"
   Enabled = false
   Match = "^(> )*你现在正忙，等有空了再说吧！|你等会儿，在大宗师面前抢什么茬儿？$"
@@ -4782,7 +4699,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqlbl9q71jkrjbv"
+  ID = "d1f1l2jc7tcobh73qfkksg"
   Name = "event_accepting"
   Enabled = false
   Match = "^(> )*你正在应战呢！$"
@@ -4813,7 +4730,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqlbr0071jkrjc0"
+  ID = "d1f1l2jc7tctb773qfkksh"
   Name = "event_acceptname"
   Enabled = false
   Match = "^(> )*【东拉西扯】%1[%2]：(.*)少要猖狂，我来了！$"
@@ -4844,7 +4761,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqlc08l71jkrjc1"
+  ID = "d1f1l2jc7td1ud73qfkksi"
   Name = "event_acceptwin"
   Enabled = false
   Match = "^(> )*%1身子一退，掉下(.*)！$"
@@ -4875,7 +4792,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqlc5os71jkrjc2"
+  ID = "d1f1l2jc7td6kh73qfkksj"
   Name = "dragoncome"
   Enabled = true
   Match = "^(> )*【神话传说】(不及多想|玉帝大怒|噢呦|牛魔王道)"
@@ -4906,7 +4823,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqlcbdb71jkrjc3"
+  ID = "d1f1l2jc7tdb1773qfkksk"
   Name = "dragonflee"
   Enabled = false
   Match = "^(> )*【东拉西扯】(北海谪龙|东海三太子|南海恶蛟|牛头怪)\\[(King of dragon|Prince of dragon|Monster dragon|Niutou guai)\\]：(天哪！这年头，看来是没有我立足的地方了！|呀！想不到凡人也有如此厉害的！|啊呀！不好，看来这次出师不利，待我回南海修炼上几年再说！)"
@@ -4937,7 +4854,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqlcgle71jkrjc4"
+  ID = "d1f1l2jc7tdg0t73qfkksl"
   Name = "on_accept"
   Enabled = true
   Match = "^(> )*(黄裳|南海神尼|独孤求败|葵花太监)告诉你：你何不出手应战\\(accept\\)？扬我中华武林威风！$"
@@ -4968,7 +4885,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqlcmiv71jkrjc5"
+  ID = "d1f1l2jc7tdkel73qfkksm"
   Name = "event_storygift"
   Enabled = true
   Match = "^(> )*“啪”的一声(.*)掉到你面前。$"
@@ -4999,7 +4916,7 @@ Channel="helllua"
   Variable = ""
 
 [[Triggers]]
-  ID = "d1d3ic3aqlcsdp71jkrjc6"
+  ID = "d1f1l2jc7tdp4473qfkksn"
   Name = "wieldtest"
   Enabled = false
   Match = "(> )*你并没有装备这样东西作为武器。$"
@@ -5029,6 +4946,37 @@ Channel="helllua"
   Italic = false
   Variable = ""
 
+[[Triggers]]
+  ID = "d1f1l1fo8s3alq73qfhg8c"
+  Name = "on_objend"
+  Enabled = false
+  Match = "^.*$"
+  Send = ""
+  ColourChangeType = 0
+  Colour = 0
+  Wildcard = 0
+  SoundFileName = ""
+  SoundIfInactive = false
+  Script = "on_objend"
+  SendTo = 0
+  Sequence = 200
+  ExpandVariables = false
+  Temporary = false
+  OneShot = false
+  Regexp = true
+  Repeat = false
+  MultiLine = false
+  LinesToMatch = 0
+  WildcardLowerCase = false
+  Group = "roomobj"
+  IgnoreCase = false
+  KeepEvaluating = true
+  OmitFromLog = false
+  OmitFromOutput = false
+  Inverse = false
+  Italic = false
+  Variable = ""
+
 [[Timers]]
   ID = "d1d3be7okrf0eb6eh7d5m"
   Name = "on_steptimeout"
@@ -5048,51 +4996,6 @@ Channel="helllua"
   OmitFromLog = false
   OmitFromOutput = false
 
-[[Aliases]]
-  ID = "d1d3ic3aqkn1iu71jkrj8m"
-  Name = "alias_start"
-  Enabled = true
-  Match = "^start\\s{0,1}(.*)$"
-  Send = ""
-  Script = "alias_start"
-  SendTo = 0
-  Sequence = 0
-  ExpandVariables = false
-  Temporary = false
-  OneShot = false
-  Regexp = true
-  Group = ""
-  IgnoreCase = true
-  KeepEvaluating = true
-  Menu = false
-  OmitFromLog = false
-  Variable = ""
-  ReverseSpeedwalk = false
-  OmitFromOutput = false
-  OmitFromCommandHistory = false
-
-[[Aliases]]
-  ID = "d1d3ic3aqkn74871jkrj8n"
-  Name = "alias_kill"
-  Enabled = true
-  Match = "^#kill\\s{0,1}(.*)$"
-  Send = ""
-  Script = "alias_kill"
-  SendTo = 0
-  Sequence = 0
-  ExpandVariables = false
-  Temporary = false
-  OneShot = false
-  Regexp = true
-  Group = ""
-  IgnoreCase = true
-  KeepEvaluating = true
-  Menu = false
-  OmitFromLog = false
-  Variable = ""
-  ReverseSpeedwalk = false
-  OmitFromOutput = false
-  OmitFromCommandHistory = false
 [[Aliases]]
   ID = "d1d3ic3aqkn74872jkrj8n"
   Name = "alias_fight"
@@ -5117,7 +5020,53 @@ Channel="helllua"
   OmitFromCommandHistory = false
 
 [[Aliases]]
-  ID = "d1d3ic3aqkna4h71jkrj8o"
+  ID = "d1f1l2jc7stpmq73qfkkp9"
+  Name = "alias_start"
+  Enabled = true
+  Match = "^start\\s{0,1}(.*)$"
+  Send = ""
+  Script = "alias_start"
+  SendTo = 0
+  Sequence = 0
+  ExpandVariables = false
+  Temporary = false
+  OneShot = false
+  Regexp = true
+  Group = ""
+  IgnoreCase = true
+  KeepEvaluating = true
+  Menu = false
+  OmitFromLog = false
+  Variable = ""
+  ReverseSpeedwalk = false
+  OmitFromOutput = false
+  OmitFromCommandHistory = false
+
+[[Aliases]]
+  ID = "d1f1l2jc7su0fj73qfkkpa"
+  Name = "alias_kill"
+  Enabled = true
+  Match = "^#kill\\s{0,1}(.*)$"
+  Send = ""
+  Script = "alias_kill"
+  SendTo = 0
+  Sequence = 0
+  ExpandVariables = false
+  Temporary = false
+  OneShot = false
+  Regexp = true
+  Group = ""
+  IgnoreCase = true
+  KeepEvaluating = true
+  Menu = false
+  OmitFromLog = false
+  Variable = ""
+  ReverseSpeedwalk = false
+  OmitFromOutput = false
+  OmitFromCommandHistory = false
+
+[[Aliases]]
+  ID = "d1f1l2jc7su3hg73qfkkpb"
   Name = "alias_fq"
   Enabled = true
   Match = "^#fq\\s{0,1}(.*)$"
@@ -5140,7 +5089,7 @@ Channel="helllua"
   OmitFromCommandHistory = false
 
 [[Aliases]]
-  ID = "d1d3ic3aqkncmo71jkrj8p"
+  ID = "d1f1l2jc7su5ud73qfkkpc"
   Name = "alias_make"
   Enabled = true
   Match = "^#make\\s{0,1}(.*)$"
@@ -5163,7 +5112,7 @@ Channel="helllua"
   OmitFromCommandHistory = false
 
 [[Aliases]]
-  ID = "d1d3ic3aqknfdi71jkrj8q"
+  ID = "d1f1l2jc7su90873qfkkpd"
   Name = "alias_re"
   Enabled = true
   Match = "^#re(\\s(.*)){0,1}$"
@@ -5186,7 +5135,7 @@ Channel="helllua"
   OmitFromCommandHistory = false
 
 [[Aliases]]
-  ID = "d1d3ic3aqknhv771jkrj8r"
+  ID = "d1f1l2jc7subbt73qfkkpe"
   Name = "alias_pick"
   Enabled = true
   Match = "^#pick$"
@@ -5209,7 +5158,7 @@ Channel="helllua"
   OmitFromCommandHistory = false
 
 [[Aliases]]
-  ID = "d1d3ic3aqknkbf71jkrj8s"
+  ID = "d1f1l2jc7sudmn73qfkkpf"
   Name = "alias_setvalue"
   Enabled = true
   Match = "^#set(\\s{0,1}(\\S*)){0,1}\\s{0,1}(.*)$"
@@ -5232,7 +5181,7 @@ Channel="helllua"
   OmitFromCommandHistory = false
 
 [[Aliases]]
-  ID = "d1d3ic3aqknmpe71jkrj8t"
+  ID = "d1f1l2jc7sugb873qfkkpg"
   Name = "alias_check"
   Enabled = true
   Match = "^#check\\s{0,1}(.*)$"
@@ -5255,14 +5204,14 @@ Channel="helllua"
   OmitFromCommandHistory = false
 
 [[Aliases]]
-  ID = "d1d3ic3aqknp6f71jkrj8u"
+  ID = "d1f1l2jc7suj7n73qfkkph"
   Name = "alias_lian"
   Enabled = true
-  Match = "^#lian\\s{0,1}(.*)$"
+  Match = "^#lian\\s(.*)$"
   Send = ""
   Script = "alias_lian"
   SendTo = 0
-  Sequence = 100
+  Sequence = 0
   ExpandVariables = false
   Temporary = false
   OneShot = false
@@ -5278,7 +5227,7 @@ Channel="helllua"
   OmitFromCommandHistory = false
 
 [[Aliases]]
-  ID = "d1d3ic3aqknroa71jkrj8v"
+  ID = "d1f1l2jc7suljn73qfkkpi"
   Name = "alias_assist"
   Enabled = true
   Match = "^#assist( (.+)){0,1}$"
@@ -5301,7 +5250,7 @@ Channel="helllua"
   OmitFromCommandHistory = false
 
 [[Aliases]]
-  ID = "d1d3ic3aqknug171jkrj90"
+  ID = "d1f1l2jc7suo6t73qfkkpj"
   Name = "alias_dazuoneili"
   Enabled = true
   Match = "^#dazuo\\s{0,1}(.*)$"
@@ -5324,7 +5273,7 @@ Channel="helllua"
   OmitFromCommandHistory = false
 
 [[Aliases]]
-  ID = "d1d3ic3aqko22v71jkrj91"
+  ID = "d1f1l2jc7suqkh73qfkkpk"
   Name = "alias_beiqi"
   Enabled = true
   Match = "^#beiqi\\s{0,1}(.*)$"
@@ -5347,7 +5296,7 @@ Channel="helllua"
   OmitFromCommandHistory = false
 
 [[Aliases]]
-  ID = "d1d3ic3aqko80871jkrj92"
+  ID = "d1f1l2jc7susq073qfkkpl"
   Name = "alias_letter"
   Enabled = true
   Match = "^#letter\\s{0,1}(.*)$"
@@ -5370,7 +5319,7 @@ Channel="helllua"
   OmitFromCommandHistory = false
 
 [[Aliases]]
-  ID = "d1d3ic3aqkodgu71jkrj93"
+  ID = "d1f1l2jc7suuvb73qfkkpm"
   Name = "alias_caxie"
   Enabled = true
   Match = "^#caxie\\s{0,1}(.*)$"
@@ -5393,7 +5342,7 @@ Channel="helllua"
   OmitFromCommandHistory = false
 
 [[Aliases]]
-  ID = "d1d3ic3aqkoiav71jkrj94"
+  ID = "d1f1l2jc7sv1i573qfkkpn"
   Name = "alias_fish"
   Enabled = true
   Match = "^#fish\\s{0,1}(.*)$"
@@ -5416,7 +5365,7 @@ Channel="helllua"
   OmitFromCommandHistory = false
 
 [[Aliases]]
-  ID = "d1d3ic3aqkonf871jkrj95"
+  ID = "d1f1l2jc7sv3of73qfkkpo"
   Name = "alias_dutable"
   Enabled = true
   Match = "#dutable"
@@ -5439,7 +5388,7 @@ Channel="helllua"
   OmitFromCommandHistory = false
 
 [[Aliases]]
-  ID = "d1d3ic3aqkor8l71jkrj96"
+  ID = "d1f1l2jc7sv5vj73qfkkpp"
   Name = "alias_to"
   Enabled = true
   Match = "^#to (.*)$"
@@ -5462,7 +5411,7 @@ Channel="helllua"
   OmitFromCommandHistory = false
 
 [[Aliases]]
-  ID = "d1d3ic3aqkp0a471jkrj97"
+  ID = "d1f1l2jc7sv87v73qfkkpq"
   Name = "alias_do"
   Enabled = true
   Match = "^##(.+)$"
@@ -5485,7 +5434,7 @@ Channel="helllua"
   OmitFromCommandHistory = false
 
 [[Aliases]]
-  ID = "d1d3ic3aqkp5lm71jkrj98"
+  ID = "d1f1l2jc7svagc73qfkkpr"
   Name = "alias_canwu"
   Enabled = true
   Match = "#canwu"
@@ -5646,78 +5595,91 @@ Channel="helllua"
   OmitFromCommandHistory = false
 
 [[RequiredParams]]
-Name="id"
-Desc="用户id"
-Intro="登陆用的用户id"
-[[RequiredParams]]
-Name="passwd"
-Desc="用户密码"
-Intro="登陆用的用户密码"
-[[RequiredParams]]
-Name="expmax"
-Desc="最大经验(整数)"
-Intro="做师门任务时超过此数值将会自动放弃经验"
-[[RequiredParams]]
-Name="goldmin"
-Desc="最少黄金"
-Intro="黄金少于此数值时会自动取款"
-[[RequiredParams]]
-Name="neilimin"
-Desc="最小内力(整数)"
-Intro="低于最小内力会自动睡觉或打坐"
-[[RequiredParams]]
-Name="pfm"
-Desc="攻击招数"
-Intro="攻击时使用的pfm,如果为shot会自动买弓/箭进行射击"
-[[RequiredParams]]
-Name="weapon"
-Desc="武器"
-Intro="攻击用的武器"
-[[RequiredParams]]
-Name="potmax"
-Desc="最大潜能"
-Intro="高于最大潜能会去学习"
-[[RequiredParams]]
-Name="skilllist"
-Desc="技能列表"
-Intro="随机学习技能列表里的技能。参考格式为\nliterate,dodge,shenyuan-gong,beidou-xianzong,sword,murong-sword,parry"
+  Name = "id"
+  Desc = "用户id"
+  Intro = "登陆用的用户id"
 
 [[RequiredParams]]
-Name="passlist"
-Desc="手谕列表"
-Intro="以逗号分隔手谕列表，不为空这认为自带这些手谕，参考格式为\n胖胖包,老牛"
+  Name = "passwd"
+  Desc = "用户密码"
+  Intro = "登陆用的用户密码"
 
 [[RequiredParams]]
-Name="nuqimin"
-Desc="怒气最小值(整数)"
-Intro="性格符合时，低于怒气最小值会自动爆发"
+  Name = "expmax"
+  Desc = "最大经验(整数)"
+  Intro = "做师门任务时超过此数值将会自动放弃经验"
 
+[[RequiredParams]]
+  Name = "goldmin"
+  Desc = "最少黄金"
+  Intro = "黄金少于此数值时会自动取款"
 
 [[RequiredParams]]
-Name="fight_preper"
-Desc="战斗准备命令"
-Intro="每次战斗的准备命令，可留空"
+  Name = "neilimin"
+  Desc = "最小内力(整数)"
+  Intro = "低于最小内力会自动睡觉或打坐"
+
 [[RequiredParams]]
-Name="fightcuff"
-Desc="战斗准备拳法命令"
-Intro="每次战斗的准备拳法命令，可留空"
+  Name = "pfm"
+  Desc = "攻击招数"
+  Intro = "攻击时使用的pfm,如果为shot会自动买弓/箭进行射击"
+
 [[RequiredParams]]
-Name="killcmd"
-Desc="杀人命名"
-Intro="杀人后等信件时执行的命令"
+  Name = "weapon"
+  Desc = "武器"
+  Intro = "攻击用的武器"
+
 [[RequiredParams]]
-Name="qixuemin"
-Desc="最低气血百分比(0-100整数)"
-Intro="低于此数值后自动治疗"
+  Name = "potmax"
+  Desc = "最大潜能"
+  Intro = "高于最大潜能会去学习"
+
 [[RequiredParams]]
-Name="tihuimax"
-Desc="最大体会"
-Intro="高于此值后自动汲取"
+  Name = "skilllist"
+  Desc = "技能列表"
+  Intro = "随机学习技能列表里的技能。参考格式为\nliterate,dodge,shenyuan-gong,beidou-xianzong,sword,murong-sword,parry"
+
 [[RequiredParams]]
-Name="weapon2"
-Desc="砍头武器"
-Intro="砍头用的武器"
+  Name = "passlist"
+  Desc = "手谕列表"
+  Intro = "以逗号分隔手谕列表，不为空这认为自带这些手谕，参考格式为\n胖胖包,老牛"
+
 [[RequiredParams]]
-Name="jinlimin"
-Desc="最小精力"
-Intro="最小精力值，自动吐纳"
+  Name = "nuqimin"
+  Desc = "怒气最小值(整数)"
+  Intro = "性格符合时，低于怒气最小值会自动爆发"
+
+[[RequiredParams]]
+  Name = "fight_preper"
+  Desc = "战斗准备命令"
+  Intro = "每次战斗的准备命令，可留空"
+
+[[RequiredParams]]
+  Name = "fightcuff"
+  Desc = "战斗准备拳法命令"
+  Intro = "每次战斗的准备拳法命令，可留空"
+
+[[RequiredParams]]
+  Name = "killcmd"
+  Desc = "杀人命名"
+  Intro = "杀人后等信件时执行的命令"
+
+[[RequiredParams]]
+  Name = "qixuemin"
+  Desc = "最低气血百分比(0-100整数)"
+  Intro = "低于此数值后自动治疗"
+
+[[RequiredParams]]
+  Name = "tihuimax"
+  Desc = "最大体会"
+  Intro = "高于此值后自动汲取"
+
+[[RequiredParams]]
+  Name = "weapon2"
+  Desc = "砍头武器"
+  Intro = "砍头用的武器"
+
+[[RequiredParams]]
+  Name = "jinlimin"
+  Desc = "最小精力"
+  Intro = "最小精力值，自动吐纳"
